@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Black Street Studio | Cinematic Production</title>
+<meta name="description" content="Black Street Studio is a creative production agency for cinematic filmmaking, photography, promotional videos, reels and social media management.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,wght@0,400;1,400&family=Courier+Prime&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#0e0b09;--card:#18130f;--cream:#f3e9d2;--amber:#e8a33d;--brick:#9c3b26;--mute:#a89c85;--line:#2e2620;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--cream);font:19px/1.6 Newsreader,Georgia,serif}
+h1,h2,h3{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;letter-spacing:.04em;margin:0}
+.mono{font-family:'Courier Prime',monospace;letter-spacing:.12em;text-transform:uppercase;font-size:13px;color:var(--amber)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(14,11,9,.92);border-bottom:1px solid var(--line)}
+nav b{font:22px 'Bebas Neue',Impact;letter-spacing:.1em}nav a{color:var(--cream);text-decoration:none;margin-left:20px;font:13px 'Courier Prime',monospace;letter-spacing:.1em;text-transform:uppercase}
+section{padding:80px 5vw;max-width:1200px;margin:auto}
+.hero{min-height:80vh;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at 70% 30%,rgba(156,59,38,.35),transparent 60%)}
+.hero h1{font-size:clamp(60px,13vw,170px);line-height:.9}.hero h1 span{color:var(--amber)}
+.hero p{max-width:560px;color:var(--mute);font-style:italic}
+.btn{display:inline-block;background:var(--amber);color:#1a1207;border:0;padding:14px 28px;font:15px 'Courier Prime',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn.ghost{background:none;color:var(--cream);border:1px solid var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:30px}
+.svc{background:var(--card);border:1px solid var(--line);padding:22px 26px;cursor:pointer;transition:.2s;aspect-ratio:16/9;border-radius:20px;display:flex;flex-direction:column;justify-content:center}
+.svc:hover{border-color:var(--amber);transform:translateY(-3px)}.svc h3{font-size:30px;line-height:1.05;margin-bottom:8px;color:var(--amber)}.svc p{margin:0;font-size:17px;line-height:1.45}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{background:none;border:1px solid var(--line);color:var(--cream);padding:8px 16px;font:13px 'Courier Prime',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.chip.on{background:var(--brick);border-color:var(--brick)}
+.tile{position:relative;aspect-ratio:16/9;border-radius:20px;background:linear-gradient(135deg,#241a13,#120d0a);border:1px solid var(--line);overflow:hidden;cursor:pointer}
+.tile img{width:100%;height:100%;object-fit:cover}.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.tile .cap h3{font-size:24px}.empty{color:var(--mute);font-style:italic;margin-top:24px}
+form{display:grid;gap:14px;max-width:620px;margin-top:28px}
+input,select,textarea{width:100%;background:var(--card);border:1px solid var(--line);color:var(--cream);padding:13px;font:17px Newsreader,serif}
+input:focus,select:focus,textarea:focus{outline:1px solid var(--amber)}
+.msg{font:14px 'Courier Prime',monospace;color:var(--amber);min-height:20px}
+footer{border-top:1px solid var(--line);padding:50px 5vw 30px;color:var(--mute)}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.3fr;gap:40px;max-width:1200px;margin:auto;text-align:left}
+.fl{font:48px/1 'Bebas Neue',Impact,sans-serif;letter-spacing:.03em;display:inline-block;padding-bottom:6px;border-bottom:1px solid var(--amber);background:linear-gradient(#fff,#8b8b8b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ft{margin:18px 0 0;font-size:19px;color:var(--mute)}
+.fn{display:flex;flex-direction:column;gap:14px;align-items:flex-start}.fn .mono{margin-bottom:6px}
+.fn a,.fn>span{font:15px 'Courier Prime',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);text-decoration:none;transition:color .2s}
+.fn a:hover{color:var(--amber)}
+#fMail,#fMail a{text-transform:none;letter-spacing:.04em;font-size:16px}
+.fn a.fb{border:1px solid var(--amber);color:var(--amber);padding:14px 26px;margin-top:10px;transition:background .2s,color .2s}.fn a.fb:hover{background:var(--amber);color:#1a1207}
+.cp{margin-top:44px;text-align:center}
+@media(max-width:800px){.fg{grid-template-columns:1fr 1fr}}@media(max-width:520px){.fg{grid-template-columns:1fr}}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.93);display:none;align-items:center;justify-content:center;z-index:9;padding:5vw}
+#lb img{max-width:100%;max-height:85vh}#lb.on{display:flex}
+#admin{background:var(--card);border:1px dashed var(--amber);margin:0 5vw 40px;padding:24px;display:none}
+#admin.on{display:block}.row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:16px}
+.row button{background:none;border:0;color:var(--brick);cursor:pointer;font:13px 'Courier Prime',monospace}
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes drift{from{background-position:0% 0%}to{background-position:100% 100%}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes glow{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 40px rgba(232,163,61,.55)}}
+.hero{background-size:150% 150%;animation:drift 14s ease-in-out infinite alternate}
+.hero>*{animation:up 1s cubic-bezier(.2,.7,.2,1) both}.hero>:nth-child(2){animation-delay:.15s}.hero>:nth-child(3){animation-delay:.3s}.hero>:nth-child(4){animation-delay:.45s}
+.hero h1 span{animation:glow 4s ease-in-out infinite}
+.ticker{overflow:hidden;border-block:1px solid var(--line);padding:14px 0;background:var(--card)}
+.tk{display:flex;width:max-content;animation:mq 32s linear infinite;font:28px 'Bebas Neue',Impact,sans-serif;letter-spacing:.1em;color:var(--amber);white-space:pre}
+.ticker:hover .tk{animation-play-state:paused}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+.tile img{transition:transform .7s}.tile:hover img{transform:scale(1.08)}.tile .cap{transition:transform .4s;transform:translateY(8px)}.tile:hover .cap{transform:none}
+.btn{transition:transform .2s,box-shadow .2s}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(232,163,61,.35)}
+.chip{transition:background .25s,border-color .25s}.chip:hover{border-color:var(--amber)}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amber);z-index:20}
+nav>div{display:flex;flex-wrap:wrap;justify-content:flex-end}
+.cl{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}.cl div{border:1px solid var(--line);background:var(--card);padding:22px 12px;text-align:center;font:25px 'Bebas Neue',Impact,sans-serif;letter-spacing:.08em;transition:border-color .25s,color .25s,transform .25s}.cl div:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px)}
+.rcard{background:var(--card);border:1px solid var(--line);padding:24px}.rcard p{margin:10px 0}.st{color:var(--amber);letter-spacing:.2em}
+#blogS{display:none;max-width:760px}body.blog #blogS{display:block}
+body.blog .hero,body.blog .ticker,body.blog section:not(#blogS),body.blog #admin{display:none}
+#blogS h1{font-size:clamp(44px,8vw,84px);line-height:.95;margin:10px 0 14px}#blogS h3{font-size:34px;color:var(--amber);margin:34px 0 6px}
+#blogS p{font-size:20px;margin:0 0 16px}#blogS .by{color:var(--mute);font-style:italic}
+#blogS .back{background:none;border:0;color:var(--amber);cursor:pointer;font:14px 'Courier Prime',monospace;letter-spacing:.1em;text-transform:uppercase;padding:0 0 20px}
+#blogS .end{border-top:1px solid var(--line);margin-top:40px;padding-top:30px}
+nav b,nav a{cursor:pointer}
+.hero{max-width:none;margin:0;padding:80px max(5vw,calc((100vw - 1200px)/2));background:linear-gradient(90deg,rgba(14,11,9,.9) 0%,rgba(14,11,9,.6) 50%,rgba(14,11,9,.3) 100%),linear-gradient(0deg,#0e0b09 0%,transparent 25%),url("images/hero.jpg") center/cover no-repeat;animation:none}
+.hero p{color:#dccfb6}
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;width:42px;height:42px;border-radius:50%;background:rgba(14,11,9,.7);border:1.5px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:15px;padding-left:3px;pointer-events:none;transition:opacity .25s,transform .25s}.tile:hover .play,.tile:focus-visible .play{opacity:1;transform:translate(-50%,-50%) scale(1)}@media(hover:none){.play{opacity:1;transform:translate(-50%,-50%)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){nav a{margin-left:12px}}
+</style></head><body>
+<div id="bar"></div>
+<nav><b>BLACK STREET STUDIO</b><div><a href="#services">Services</a><a href="#work">Work</a><a href="#clients">Clients</a><a href="#reviews">Reviews</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Book</a></div></nav>
+
+<section class="hero" id="top">
+<div class="mono">Cinematic Production</div>
+<h1>BLACK STREET<br><span>STUDIO</span></h1>
+<p>A creative production agency for cinematic filmmaking, photography, promotional videos, reels and social media management.</p>
+<div style="margin-top:28px"><a class="btn" href="#contact">Book a shoot</a> <a class="btn ghost" href="#work">See the portfolio</a></div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="tk" id="tk"></div></div>
+
+<section id="services"><div class="mono">What we do</div><h2 style="font-size:56px">Services</h2>
+<div class="grid" id="svcGrid"></div></section>
+
+<section id="work"><div class="mono">Portfolio</div><h2 style="font-size:56px">Selected Work</h2>
+<div class="chips" id="chips"></div><div class="grid" id="works"></div><div style="text-align:center;margin-top:30px"><button class="btn ghost" id="moreBtn" type="button" style="display:none">More</button></div><p class="empty" id="emptyW"></p></section>
+
+<section id="clients"><div class="mono">Our Clients</div><h2 style="font-size:56px">Trusted by 600+ Clients</h2>
+<p style="max-width:720px">From global brands to emerging businesses, we’ve partnered with 600+ clients across industries, creating impactful videos, compelling visuals, and engaging digital content.</p>
+<div class="mono" style="margin-top:34px">Featured Clients</div>
+<div class="grid cl"><div>Samsung</div><div>Sahu Group</div><div>Redink India</div><div>Astral Clothings</div><div>Zepcruit</div><div>Fx Retina</div><div>YogKulam</div><div>Shagun Weddings</div><div>Accidental Doctor</div><div>Bhavaya Kitchen</div></div>
+<p style="color:var(--mute);font-style:italic;margin-top:40px">Every collaboration is another story brought to life by Black Street Studio.</p></section>
+
+<section id="reviews"><div class="mono">Reviews</div><h2 style="font-size:56px">What Clients Say</h2>
+<div class="grid" id="rvGrid"></div><p class="empty" id="emptyR"></p>
+<form id="rf"><input name="name" placeholder="Your name" required maxlength="80">
+<select name="rating" aria-label="Rating"><option value="5">★★★★★ (5)</option><option value="4">★★★★ (4)</option><option value="3">★★★ (3)</option><option value="2">★★ (2)</option><option value="1">★ (1)</option></select>
+<textarea name="text" rows="3" placeholder="Share your experience with Black Street Studio" required maxlength="600"></textarea>
+<button class="btn" type="submit">Submit review</button><div class="msg" id="rmsg"></div></form></section>
+
+<section id="about"><div class="mono">About</div><h2 style="font-size:56px">The Studio</h2>
+<p style="max-width:700px">Black Street Studio is a creative production agency with 5+ years of experience in cinematic filmmaking, photography, promotional videos, reels, and social media management.</p>
+<p style="max-width:700px">Our mission is to turn attention into action through powerful storytelling, creative visuals, and digital strategies that help brands grow.</p></section>
+
+<section id="contact"><h2 style="font-size:56px">Start a project</h2>
+<form id="f">
+<input name="name" placeholder="Your name" required maxlength="80">
+<input name="contact" placeholder="Phone or email" required maxlength="120">
+<select name="service" id="svcSel"></select>
+<input name="date" type="date" aria-label="Preferred date">
+<textarea name="details" rows="4" placeholder="Tell us about your project" maxlength="1500"></textarea>
+<button class="btn" type="submit">Send enquiry</button><div class="msg" id="msg"></div>
+</form></section>
+
+<section id="blogS"><button class="back" id="blogBack" type="button">← Back to home</button>
+<div class="mono">Blog</div>
+<h1>How to Make Your Brand Stand Out on Social Media</h1>
+<p class="by mono" style="color:var(--mute)">By Black Street Studio | Branding &amp; Social Media Marketing</p>
+<p>In today’s digital world, simply being present on social media isn’t enough. Thousands of brands compete for attention every day, and standing out requires more than just posting regularly. It takes a clear identity, creative content, and a strategy that connects with your audience.</p>
+<p>Here are six ways to make your brand stand out on social media.</p>
+<h3>1. Build a Strong Brand Identity</h3>
+<p>Your brand should be instantly recognizable. Use consistent colours, typography, visual styles, and tone of voice across your social media platforms. A strong identity helps your audience remember you and builds trust over time.</p>
+<h3>2. Create High-Quality Visual Content</h3>
+<p>First impressions matter. Professional photography, cinematic videos, and well-designed graphics can make your brand look more credible and appealing. Focus on visuals that communicate your brand’s personality rather than simply filling your feed.</p>
+<h3>3. Use Reels and Short-Form Videos</h3>
+<p>Short-form videos are an effective way to showcase your products, services, team, and brand story. Use engaging openings, clear messaging, creative editing, and relevant trends to capture attention within the first few seconds.</p>
+<h3>4. Tell Stories, Not Just Sales Pitches</h3>
+<p>People connect with stories more than constant promotions. Share behind-the-scenes moments, customer experiences, product journeys, and the people behind your business. Authentic storytelling helps build a stronger connection with your audience.</p>
+<h3>5. Stay Consistent and Understand Your Audience</h3>
+<p>Create a realistic content calendar and publish consistently. Pay attention to what your audience watches, saves, shares, and comments on. Use these insights to improve your content strategy instead of relying on guesswork.</p>
+<h3>6. Turn Engagement Into Relationships</h3>
+<p>Social media is a two-way conversation. Reply to comments, answer messages, ask questions, and encourage customers to share their experiences. Building genuine relationships can turn followers into loyal customers.</p>
+<h3>Final Thoughts</h3>
+<p>Standing out on social media isn’t about posting more—it’s about creating content with purpose. When strong branding, quality visuals, engaging storytelling, and a consistent strategy work together, your brand has a better opportunity to earn attention and build lasting connections.</p>
+<p>At Black Street Studio, we help brands bring their ideas to life through creative content, cinematic video production, photography, and social media management.</p>
+<div class="end"><h3 style="margin-top:0">Ready to make your brand stand out?</h3>
+<p>Let’s turn attention into action.</p>
+<a class="btn" href="#contact" id="blogCta">Book a shoot</a>
+<p style="margin-top:26px"><b>Black Street Studio</b><br><i>Turning Attention Into Action.</i><br>Instagram: <a style="color:var(--amber)" href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">instagram.com/blackstreet.studio</a></p></div></section>
+
+<footer><div class="fg">
+<div><div class="fl">BLACK STREET STUDIO</div><p class="ft">Turning Attention Into Action.</p></div>
+<div class="fn"><div class="mono">Navigate</div><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Contact</a></div>
+<div class="fn" id="fSoc"><div class="mono">Follow</div><a href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">Instagram</a></div>
+<div class="fn"><div class="mono">Get in touch</div><span id="fMail"></span><span id="fPhone"></span><span id="fAddr"></span><a class="fb" href="#contact">Start a project</a></div>
+</div><div class="mono cp">&copy; Black Street Studio</div></footer>
+<div id="lb"><img alt=""><iframe id="lbf" allow="autoplay; fullscreen" allowfullscreen style="display:none;width:min(1000px,100%);aspect-ratio:16/9;border:0"></iframe></div>
+
+<script>
+const CFG={
+  // 1) Paste your Formspree form URL here (https://formspree.io), e.g. "https://formspree.io/f/abcdwxyz"
+  FORM_ENDPOINT:"",
+  // 2) Contact details shown in the Book / Enquire section
+  CONTACT:{phone:"06389720861",email:"agrahariakash453@gmail.com",address:"1st floor, 8/134, Sector 8, Ismailganj, Indira Nagar",behance:"",vimeo:"",x:"",youtube:"",facebook:""}, // social links are shown in the footer only when filled (full https:// URLs)
+  //
+  // 3) Portfolio items. Put images in an "images" folder, then add lines like:
+  // {title:"Project name",cat:"Music Videos",url:"images/project1.jpg",video:"https://youtu.be/XXXXXXXXXXX"},  (video is optional: YouTube, Vimeo or any link)
+  // cat must be one of: Music Videos, Commercials & Ad Shoots, Influencer & Content Shoots, Short Films, Photoshoots, Video Editing, Social Media Management
+  PORTFOLIO:[
+   {
+    "title": "Yogakulam",
+    "cat": "Commercials & Ad Shoots",
+    "url": "images/yogakulam.jpg",
+    "video": "https://drive.google.com/file/d/1iJwoICyjboGRAOsR_Y8a7653NHTh9ThO/view?usp=sharing"
+   },
+   {
+    "title": "stable",
+    "cat": "Influencer & Content Shoots",
+    "url": "images/stable.jpg"
+   },
+   {
+    "title": "Metro",
+    "cat": "Influencer & Content Shoots",
+    "url": "images/metro.jpg"
+   },
+   {
+    "title": "Metro",
+    "cat": "Influencer & Content Shoots",
+    "url": "images/metro-2.jpg"
+   },
+   {
+    "title": "beardo",
+    "cat": "Commercials & Ad Shoots",
+    "url": "images/beardo.jpg"
+   },
+   {
+    "title": "Battle Ropes",
+    "cat": "Influencer & Content Shoots",
+    "url": "images/battle-ropes.jpg"
+   },
+   {
+    "title": "Portrait on a Yellow Chair",
+    "cat": "Influencer & Content Shoots",
+    "url": "images/portrait-on-a-yellow-chair.jpg"
+   },
+   {
+    "title": "Over the Shoulder",
+    "cat": "Influencer & Content Shoots",
+    "url": "images/over-the-shoulder.jpg"
+   },
+   {
+    "title": "Clean UP",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/DTu2_FOjJxy/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "Chinese Manja",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/DXKBNdLjO2G/?utm_source=ig_web_copy_link&mdxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "Plastic Bag Free Day",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/DaUUAGvGI03/?utm_source=ig_web_copy_link&exln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "Segregation",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/Dbf2Cb0Eo4q/?utm_source=ig_web_copy_link&xtok=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "Compost",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/Dbz2oj1DOFf/?utm_source=ig_web_copy_link&obrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "SUP",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/DcX50SMDxmU/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "Engine off",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/Ddx3ROmFFZ8/?utm_source=ig_web_copy_link&rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "E-waste",
+    "cat": "Video Editing",
+    "video": "https://www.instagram.com/reel/DeZQKkRgNyb/?utm_source=ig_web_copy_link&vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+   },
+   {
+    "title": "Murder case",
+    "cat": "Video Editing",
+    "url": "images/murder-case.jpg",
+    "video": "https://drive.google.com/file/d/1S8xLQ1eplwZpt9ZpdWCCbmjq1wQxT9Ts/view?usp=sharing"
+   },
+   {
+    "title": "Dan koi",
+    "cat": "Video Editing",
+    "url": "images/dan-koi.jpg",
+    "video": "https://drive.google.com/file/d/1q8uUEzUhA6QEw0LXzg2pAom9AZHu7Sjt/view?usp=sharing"
+   },
+   {
+    "title": "Bill free",
+    "cat": "Video Editing",
+    "url": "images/bill-free.jpg",
+    "video": "https://drive.google.com/file/d/11lZ59gAs8Oe_j799hm7IRL05Q9Hrgh2U/view?usp=sharing"
+   },
+   {
+    "title": "Cultural Program",
+    "cat": "Video Editing",
+    "url": "images/cultural-program.jpg",
+    "video": "https://drive.google.com/file/d/1QLxY7Mz1zx8SHvLnBdmBGesVLuA-CoRQ/view?usp=sharing"
+   },
+   {
+    "title": "Dubai is INSANE",
+    "cat": "Video Editing",
+    "url": "images/dubai-is-insane.jpg",
+    "video": "https://drive.google.com/file/d/1otrTbMik1a5T0fKfHmmL_7FPaefPMuYg/view?usp=sharing"
+   },
+   {
+    "title": "Map Animation",
+    "cat": "Video Editing",
+    "url": "images/map-animation.jpg",
+    "video": "https://drive.google.com/file/d/1p3xmxcpZcSh5X514v-yrpc2Govo1zIF_/view?usp=sharing"
+   },
+   {
+    "title": "Showreel",
+    "cat": "Video Editing",
+    "url": "images/showreel.jpg",
+    "video": "https://www.youtube.com/watch?v=BS3povOApTk"
+   },
+   {
+    "title": "Off Record",
+    "cat": "Short Films",
+    "url": "images/off-record.jpg",
+    "video": "https://www.youtube.com/watch?v=NM4V9b4WIRU"
+   },
+   {
+    "title": "Lauki",
+    "cat": "Short Films",
+    "url": "images/lauki.jpg",
+    "video": "https://www.youtube.com/watch?v=lCMXYB2IxnI"
+   },
+   {
+    "title": "Besabriyaan",
+    "cat": "Short Films",
+    "url": "images/besabriyaan.jpg",
+    "video": "https://drive.google.com/file/d/1s4iZxS8bnbMBhz5tE2NQGi-YL96eDwwz/view?usp=sharing"
+   },
+   {
+    "title": "Stoned",
+    "cat": "Music Videos",
+    "url": "images/stoned.jpg",
+    "video": "https://www.youtube.com/watch?v=kDamV2edYNA"
+   },
+   {
+    "title": "Kaagaz",
+    "cat": "Music Videos",
+    "url": "images/kaagaz.jpg",
+    "video": "https://www.youtube.com/watch?v=ngqfbKcULTs"
+   },
+   {
+    "title": "Double Down",
+    "cat": "Music Videos",
+    "url": "images/double-down.jpg",
+    "video": "https://www.youtube.com/watch?v=AhRwjhuGvRA"
+   },
+   {
+    "title": "Bewafa jaanejaan 2",
+    "cat": "Music Videos",
+    "url": "images/bewafa-jaanejaan-2.jpg",
+    "video": "https://www.youtube.com/watch?v=hWfjl4YckuQ"
+   },
+   {
+    "title": "Bekhabar",
+    "cat": "Music Videos",
+    "url": "images/bekhabar.jpg",
+    "video": "https://www.youtube.com/watch?v=3_d84dtDVps"
+   }
+  ],
+  // 4) Approved client reviews, e.g. {name:"Client name",rating:5,text:"Review text"},
+  REVIEWS:[
+   {
+    "name": "Kittu",
+    "rating": 4,
+    "text": "i am very happy they amazingly handel my brand"
+   },
+   {
+    "name": "Akash Agrahari",
+    "rating": 5,
+    "text": "nice people have a great exp with team"
+   }
+  ]
+};
+const SERVICES=[["Music Videos","Story-led visuals for artists and labels."],["Commercials & Ad Shoots","Polished ad films for brands."],["Influencer & Content Shoots","Scroll-stopping content for creators."],["Short Films","Cinematic storytelling from script to screen."],["Photoshoots","Editorial, portrait and brand photography."],["Video Editing","Cuts, colour and sound that finish the film."],["Social Media Management","Content and upkeep for your brand's social presence."]];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let db=null,user=null,assets=null,items=CFG.PORTFOLIO.slice(),cat="All",showMore=false;
+
+$("#svcGrid").innerHTML=SERVICES.map(([n,d])=>`<div class="svc" data-s="${esc(n)}"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join("");
+const opts=SERVICES.map(s=>`<option>${esc(s[0])}</option>`).join("");
+$("#svcSel").innerHTML=`<option value="">Service needed</option>`+opts+`<option>Other</option>`;
+document.addEventListener("click",e=>{const s=e.target.closest(".svc");if(s){$("#svcSel").value=s.dataset.s;location.hash="contact";}});
+
+function renderWork(){
+  const cats=["All",...SERVICES.map(s=>s[0]).filter(c=>c!=="Photoshoots")];
+  $("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+  const full=items.filter(i=>cat==="All"||i.cat===cat),lim=cat==="All"&&!showMore&&full.length>6,list=lim?full.slice(0,6):full;
+  $("#works").innerHTML=list.map(i=>`<div class="tile" data-u="${esc(i.url||"")}" data-v="${esc(i.video||"")}">${i.url?`<img loading="lazy" src="${esc(i.url)}" alt="${esc(i.title)}">`:""}${i.video?'<div class="play">&#9658;</div>':""}<div class="cap"><div class="mono">${esc(i.cat)}</div><h3>${esc(i.title)}</h3></div></div>`).join("");
+  $("#emptyW").textContent=list.length?"":"New work is being added. Check back soon.";
+  const mb=$("#moreBtn");mb.style.display=cat==="All"&&full.length>6?"inline-block":"none";mb.textContent=showMore?"Show less":"More";
+}
+$("#chips").addEventListener("click",e=>{const c=e.target.closest(".chip");if(c){cat=c.dataset.c;showMore=false;renderWork();}});
+function embedUrl(v){let m;
+  if(m=v.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/))return "https://www.youtube.com/embed/"+m[1]+"?autoplay=1&rel=0";
+  if(m=v.match(/vimeo\.com\/(?:video\/)?(\d+)/))return "https://player.vimeo.com/video/"+m[1]+"?autoplay=1";
+  return "";}
+$("#works").addEventListener("click",e=>{const t=e.target.closest(".tile");if(!t)return;const v=t.dataset.v,lb=$("#lb"),img=lb.querySelector("img"),f=$("#lbf");
+  if(/^https?:\/\//i.test(v)){const em=embedUrl(v);if(em){img.style.display="none";f.style.display="block";f.src=em;lb.classList.add("on");}else window.open(v,"_blank","noopener");return;}
+  if(t.dataset.u){f.style.display="none";f.src="";img.style.display="";img.src=t.dataset.u;lb.classList.add("on");}});
+$("#lb").onclick=()=>{$("#lb").classList.remove("on");$("#lbf").src="";};
+renderWork();
+$("#moreBtn").addEventListener("click",()=>{showMore=!showMore;renderWork();});
+
+const stars=n=>{n=Math.max(1,Math.min(5,Math.round(+n)||5));return "\u2605".repeat(n)+"\u2606".repeat(5-n);};
+function renderRev(){const a=CFG.REVIEWS;$("#rvGrid").innerHTML=a.map(r=>`<div class="rcard"><div class="st">${stars(r.rating)}</div><p>${esc(r.text)}</p><div class="mono">${esc(r.name)}</div></div>`).join("");$("#emptyR").textContent=a.length?"":"Be the first to leave a review.";}
+renderRev();
+function fillContact(){const c=CFG.CONTACT;
+  const set=(id,t,h)=>{const el=$(id);if(el)el.innerHTML=t?(h?`<a href="${esc(h)}">${esc(t)}</a>`:esc(t)):"";};
+  set("#fPhone",c.phone,c.phone&&"tel:"+c.phone.replace(/[^+\d]/g,""));set("#fMail",c.email,c.email&&"mailto:"+c.email);set("#fAddr",c.address);
+  const box=$("#fSoc");if(box){box.querySelectorAll(".xs").forEach(n=>n.remove());[["behance","Behance"],["vimeo","Vimeo"],["x","X"],["youtube","YouTube"],["facebook","Facebook"]].forEach(([k,l])=>{const u=c[k];if(u&&/^https?:\/\//i.test(u)){const a=document.createElement("a");a.className="xs";a.href=u;a.target="_blank";a.rel="noopener";a.textContent=l;box.appendChild(a);}});}}
+fillContact();
+// Live content: data.json (edited by admin.html) overrides the starter data above
+fetch("data.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;
+  if(Array.isArray(d.portfolio)){items=d.portfolio;showMore=false;renderWork();}
+  if(Array.isArray(d.reviews)){CFG.REVIEWS=d.reviews;renderRev();}
+  if(d.contact){Object.assign(CFG.CONTACT,d.contact);fillContact();}
+}).catch(()=>{});
+async function send(payload){
+  if(!CFG.FORM_ENDPOINT)throw 0;
+  const r=await fetch(CFG.FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(payload)});
+  if(!r.ok)throw 0;
+}
+$("#f").addEventListener("submit",async e=>{
+  e.preventDefault();const fd=Object.fromEntries(new FormData(e.target)),m=$("#msg");
+  try{await send({_subject:"New enquiry - Black Street Studio",...fd});m.textContent="Thank you. Your enquiry has been received.";e.target.reset();}
+  catch(_){try{await navigator.clipboard.writeText(`Name: ${fd.name}\nContact: ${fd.contact}\nService: ${fd.service}\nDate: ${fd.date}\n${fd.details}`);}catch(_){}
+    m.textContent="We could not send this online. Your enquiry is copied: please DM it to @blackstreet.studio on Instagram.";}
+});
+$("#rf").addEventListener("submit",async e=>{
+  e.preventDefault();const fd=Object.fromEntries(new FormData(e.target)),m=$("#rmsg");
+  try{await send({_subject:"New review - Black Street Studio",...fd});m.textContent="Thank you! Your review will appear once it is approved.";e.target.reset();}
+  catch(_){m.textContent="We could not send your review. Please DM it to @blackstreet.studio instead.";}
+});
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const tkT=SERVICES.map(s=>s[0]).join("   \u2726   ")+"   \u2726   ";
+$("#tk").innerHTML=`<span>${esc(tkT)}</span><span>${esc(tkT)}</span>`;
+if(!RM){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add("in");io.unobserve(el);setTimeout(()=>{el.classList.remove("rv","in");el.style.transitionDelay="";},1400);}}),{threshold:.1});
+  const arm=()=>document.querySelectorAll("section:not(.hero) .mono,section h2,section p,.svc,.tile,.chips,#f,#rf,.cl div,.rcard").forEach((el,i)=>{if(el.dataset.a)return;el.dataset.a=1;el.classList.add("rv");el.style.transitionDelay=(i%6)*80+"ms";io.observe(el);});
+  arm();const mo=new MutationObserver(arm);mo.observe($("#works"),{childList:true});mo.observe($("#rvGrid"),{childList:true});
+}
+const bar=$("#bar");
+addEventListener("scroll",()=>{const h=document.documentElement,m=h.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+"%";},{passive:true});
+function setView(b){document.body.classList.toggle("blog",b);scrollTo(0,0);}
+document.querySelectorAll("nav a,footer .fn a[href^=\"#\"]").forEach(a=>a.addEventListener("click",e=>{
+  const h=a.getAttribute("href"),b=h==="#blog";
+  if(b||document.body.classList.contains("blog")){e.preventDefault();setView(b);if(!b)setTimeout(()=>{const t=document.querySelector(h);t&&t.scrollIntoView();},30);}
+}));
+$("nav b").addEventListener("click",()=>setView(false));
+$("#blogBack").addEventListener("click",()=>setView(false));
+$("#blogCta").addEventListener("click",e=>{e.preventDefault();setView(false);setTimeout(()=>$("#contact").scrollIntoView(),30);});
+if(location.hash==="#blog")setView(true);
+</script></body></html>

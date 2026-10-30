@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Studio Admin | Black Street Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#0e0b09;--card:#18130f;--cream:#f3e9d2;--amber:#e8a33d;--brick:#9c3b26;--mute:#a89c85;--line:#2e2620}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--cream);font:17px/1.5 Georgia,serif;padding:24px 5vw 90px;max-width:1000px;margin:auto}
+h1,h2{font-family:Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.05em;margin:30px 0 10px}h1{font-size:42px;color:var(--amber)}h2{font-size:28px}
+.mono,small{font-family:'Courier New',monospace;color:var(--mute);font-size:13px}
+input,select,textarea{width:100%;background:var(--card);border:1px solid var(--line);color:var(--cream);padding:10px;font:16px Georgia,serif;margin:4px 0}
+button{background:var(--amber);color:#1a1207;border:0;padding:10px 18px;font:14px 'Courier New',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+button.g{background:none;color:var(--cream);border:1px solid var(--mute)}button.d{background:none;color:#e0705a;border:1px solid var(--brick)}
+.card{background:var(--card);border:1px solid var(--line);padding:16px;margin:12px 0}
+.it{display:grid;grid-template-columns:150px 1fr;gap:16px}.it img,.ph{width:150px;aspect-ratio:16/9;object-fit:cover;background:#241a13;border:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 140px}.row>button{flex:0 0 auto}
+#bar{position:fixed;left:0;right:0;bottom:0;background:#120d0a;border-top:1px solid var(--amber);padding:12px 5vw;display:flex;gap:14px;align-items:center;justify-content:space-between}
+#msg{color:var(--amber);font:14px 'Courier New',monospace}
+@media(max-width:560px){.it{grid-template-columns:1fr}}
+</style></head><body>
+<h1>Studio dashboard</h1>
+<p class="mono">Black Street Studio. Changes are saved to your GitHub repository and the site updates in a minute or two.</p>
+
+<div id="login" class="card">
+  <h2 style="margin-top:0">Connect to GitHub</h2>
+  <div class="row"><div><small>GitHub username (or organisation)</small><input id="owner" placeholder="your-username"></div>
+  <div><small>Repository name</small><input id="repo" placeholder="black-street-studio"></div>
+  <div><small>Branch</small><input id="branch" value="main"></div></div>
+  <small>Access token (fine-grained, this repository only, permission: Contents - Read and write)</small>
+  <input id="token" type="password" placeholder="github_pat_...">
+  <p class="mono">The token is kept only in this browser. Never share it or put it in the website files.</p>
+  <button id="connect">Connect</button> <span id="lmsg" class="mono"></span>
+</div>
+
+<div id="app" hidden>
+  <h2>Add portfolio item</h2>
+  <div class="card"><div class="row"><input id="nt" placeholder="Title"><select id="nc"></select></div>
+  <input id="nv" placeholder="Video link (YouTube, Vimeo, Google Drive or Instagram) - optional">
+  <small>Thumbnail image (any size, I shrink it automatically)</small><input id="nf" type="file" accept="image/*">
+  <button id="add">Add to portfolio</button></div>
+
+  <h2>Portfolio items</h2><div id="pl"></div>
+
+  <h2>Reviews</h2><div id="rl"></div>
+  <div class="card"><div class="row"><input id="rn" placeholder="Reviewer name"><select id="rs"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>
+  <textarea id="rt" rows="2" placeholder="Review text"></textarea><button id="radd">Add review</button></div>
+
+  <h2>Contact details</h2><div class="card" id="cl"></div>
+</div>
+
+<div id="bar" hidden><span id="msg">No unsaved changes</span><span><button class="g" id="out">Disconnect</button> <button id="save">Save changes to site</button></span></div>
+
+<script>
+const CATS=["Music Videos","Commercials & Ad Shoots","Influencer & Content Shoots","Short Films","Video Editing","Social Media Management"];
+const CK=["phone","email","address","behance","vimeo","x","youtube","facebook"];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LS="bss_admin_v1";
+let cfg={};try{cfg=JSON.parse(localStorage.getItem(LS)||"{}");}catch(_){}
+let data=null,sha=null,pending={},isDirty=false;
+
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+const unb64=s=>decodeURIComponent(escape(atob(s.replace(/\s/g,""))));
+const gh=(path,opt={})=>fetch(`https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/contents/${path}`,
+  {...opt,headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json","Content-Type":"application/json"}});
+const slug=t=>(t||"item").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"item";
+function dirty(on=true){isDirty=on;$("#msg").textContent=on?"Unsaved changes":"No unsaved changes";}
+window.addEventListener("beforeunload",e=>{if(isDirty){e.preventDefault();e.returnValue="";}});
+
+$("#nc").innerHTML=CATS.map(c=>`<option>${esc(c)}</option>`).join("");
+for(const k of["owner","repo","branch","token"])if(cfg[k])$("#"+k).value=cfg[k];
+
+async function connect(){
+  const m=$("#lmsg");
+  cfg={owner:$("#owner").value.trim(),repo:$("#repo").value.trim(),branch:$("#branch").value.trim()||"main",token:$("#token").value.trim()};
+  if(!cfg.owner||!cfg.repo||!cfg.token){m.textContent="Fill in all the fields.";return;}
+  m.textContent="Connecting...";
+  try{
+    const r=await gh("data.json?ref="+encodeURIComponent(cfg.branch));
+    if(r.status===401||r.status===403){throw new Error("The token was refused. Check it has Contents read and write access to this repository.");}
+    if(r.status===404){const t=await gh("?ref="+encodeURIComponent(cfg.branch));if(!t.ok)throw new Error("Repository or branch not found. Check the username, repository name and branch.");data={contact:{},portfolio:[],reviews:[]};sha=null;}
+    else if(!r.ok)throw new Error("GitHub replied with an error ("+r.status+").");
+    else{const j=await r.json();sha=j.sha;data=JSON.parse(unb64(j.content));}
+    data.contact=data.contact||{};data.portfolio=data.portfolio||[];data.reviews=data.reviews||[];
+    localStorage.setItem(LS,JSON.stringify(cfg));
+    $("#login").hidden=true;$("#app").hidden=false;$("#bar").hidden=false;render();dirty(false);
+  }catch(e){m.textContent=e.message;}
+}
+$("#connect").onclick=connect;
+$("#out").onclick=()=>{if(isDirty&&!confirm("You have unsaved changes. Disconnect anyway?"))return;localStorage.removeItem(LS);isDirty=false;location.reload();};
+
+function thumb(i){const u=data.portfolio[i].url;if(!u)return'<div class="ph"></div>';return`<img src="${esc(pending[u]?pending[u].preview:u)}" alt="">`;}
+function render(){
+  $("#pl").innerHTML=data.portfolio.map((p,i)=>`<div class="card it">${thumb(i)}<div>
+    <div class="row"><input data-i="${i}" data-k="title" value="${esc(p.title)}" placeholder="Title">
+    <select data-i="${i}" data-k="cat">${CATS.concat(CATS.includes(p.cat)?[]:[p.cat]).map(c=>`<option ${c===p.cat?"selected":""}>${esc(c)}</option>`).join("")}</select></div>
+    <input data-i="${i}" data-k="video" value="${esc(p.video||"")}" placeholder="Video link (optional)">
+    <small>Change thumbnail</small><input type="file" accept="image/*" data-f="${i}">
+    <div class="row"><button class="g" data-up="${i}">Move up</button><button class="g" data-dn="${i}">Move down</button><button class="d" data-del="${i}">Delete</button></div></div></div>`).join("")||'<p class="mono">No items yet.</p>';
+  $("#rl").innerHTML=data.reviews.map((r,i)=>`<div class="card"><b>${esc(r.name)}</b> <span class="mono">${"\u2605".repeat(Math.max(1,Math.min(5,+r.rating||5)))}</span><p>${esc(r.text)}</p><button class="d" data-rdel="${i}">Delete</button></div>`).join("")||'<p class="mono">No reviews yet.</p>';
+  $("#cl").innerHTML=CK.map(k=>`<small>${k[0].toUpperCase()+k.slice(1)}${["behance","vimeo","x","youtube","facebook"].includes(k)?" (full https:// link)":""}</small><input data-c="${k}" value="${esc(data.contact[k]||"")}">`).join("");
+}
+
+function toJpeg(file){return new Promise((res,rej)=>{
+  const im=new Image(),u=URL.createObjectURL(file);
+  im.onload=()=>{const w=Math.min(1280,im.width),h=Math.round(im.height*w/im.width),c=document.createElement("canvas");c.width=w;c.height=h;
+    c.getContext("2d").drawImage(im,0,0,w,h);const d=c.toDataURL("image/jpeg",.82);URL.revokeObjectURL(u);res(d);};
+  im.onerror=()=>rej(new Error("That file could not be read as an image."));im.src=u;});}
+async function addImage(file,title){
+  const d=await toJpeg(file),path=`images/${slug(title)}-${Date.now().toString(36)}.jpg`;
+  pending[path]={b64:d.split(",")[1],preview:d};return path;
+}
+const flash=t=>{$("#msg").textContent=t;};
+
+$("#add").onclick=async()=>{
+  const t=$("#nt").value.trim();if(!t){flash("Enter a title first.");return;}
+  try{const it={title:t,cat:$("#nc").value};const f=$("#nf").files[0];if(f)it.url=await addImage(f,t);
+    const v=$("#nv").value.trim();if(v)it.video=v;data.portfolio.unshift(it);
+    $("#nt").value="";$("#nv").value="";$("#nf").value="";render();dirty();}catch(e){flash(e.message);}
+};
+$("#pl").addEventListener("input",e=>{const d=e.target.dataset;if(d.k!==undefined){const p=data.portfolio[+d.i];if(d.k==="video"&&!e.target.value.trim())delete p.video;else p[d.k]=e.target.value;dirty();}});
+$("#pl").addEventListener("change",async e=>{const d=e.target.dataset;if(d.f===undefined||!e.target.files[0])return;
+  try{const p=data.portfolio[+d.f];p.url=await addImage(e.target.files[0],p.title);render();dirty();}catch(err){flash(err.message);}});
+$("#pl").addEventListener("click",e=>{const d=e.target.dataset,a=data.portfolio;
+  if(d.del!==undefined&&confirm("Delete this portfolio item?")){a.splice(+d.del,1);render();dirty();}
+  const mv=(i,n)=>{if(i+n<0||i+n>=a.length)return;[a[i],a[i+n]]=[a[i+n],a[i]];render();dirty();};
+  if(d.up!==undefined)mv(+d.up,-1);if(d.dn!==undefined)mv(+d.dn,1);});
+$("#radd").onclick=()=>{const n=$("#rn").value.trim(),t=$("#rt").value.trim();if(!n||!t){flash("Enter the name and the review.");return;}
+  data.reviews.unshift({name:n,rating:+$("#rs").value,text:t});$("#rn").value="";$("#rt").value="";render();dirty();};
+$("#rl").addEventListener("click",e=>{const i=e.target.dataset.rdel;if(i!==undefined&&confirm("Delete this review?")){data.reviews.splice(+i,1);render();dirty();}});
+$("#cl").addEventListener("input",e=>{const k=e.target.dataset.c;if(k){const v=e.target.value.trim();if(v)data.contact[k]=v;else delete data.contact[k];dirty();}});
+
+$("#save").onclick=async()=>{
+  const btn=$("#save");btn.disabled=true;
+  try{
+    for(const[path,img]of Object.entries(pending)){
+      if(!data.portfolio.some(p=>p.url===path))continue;
+      flash("Uploading "+path+"...");
+      const r=await gh(path,{method:"PUT",body:JSON.stringify({message:"Add image "+path,content:img.b64,branch:cfg.branch})});
+      if(!r.ok)throw new Error("Image upload failed ("+r.status+").");
+    }
+    flash("Saving content...");
+    const body={message:"Update site content",content:b64(JSON.stringify(data,null,1)+"\n"),branch:cfg.branch};if(sha)body.sha=sha;
+    const r=await gh("data.json",{method:"PUT",body:JSON.stringify(body)});
+    if(r.status===409||r.status===422)throw new Error("The site changed on GitHub since you opened this page. Reload this page, then make your changes again.");
+    if(!r.ok)throw new Error("Saving failed ("+r.status+").");
+    sha=(await r.json()).content.sha;pending={};dirty(false);flash("Saved. The site updates in a minute or two.");
+  }catch(e){flash(e.message);}finally{btn.disabled=false;}
+};
+if(cfg.token&&cfg.owner&&cfg.repo)connect();
+</script></body></html>
