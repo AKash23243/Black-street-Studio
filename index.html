@@ -89,6 +89,7 @@ section h2{line-height:1.05}
 .mq.all{overflow:visible;-webkit-mask-image:none;mask-image:none}
 .mq.all .mqt{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));width:auto;animation:none;transform:none}
 .mq.all .mqt>*{flex:none}.mq.all .dup{display:none}
+.mqt.rvt>*{flex-basis:340px}.rcard{display:flex;flex-direction:column}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media(max-width:640px){nav a{margin-left:12px}}
 </style></head><body>
@@ -118,7 +119,7 @@ section h2{line-height:1.05}
 <p style="color:var(--mute);font-style:italic;margin-top:40px">Every collaboration is another story brought to life by Black Street Studio.</p></section>
 
 <section id="reviews"><div class="mono">Reviews</div><h2 style="font-size:56px">What Clients Say</h2>
-<div class="grid" id="rvGrid"></div><p class="empty" id="emptyR"></p>
+<div class="mq" id="rvGrid"></div><p class="empty" id="emptyR"></p>
 <form id="rf"><input name="name" placeholder="Your name" required maxlength="80">
 <select name="rating" aria-label="Rating"><option value="5">★★★★★ (5)</option><option value="4">★★★★ (4)</option><option value="3">★★★ (3)</option><option value="2">★★ (2)</option><option value="1">★ (1)</option></select>
 <textarea name="text" rows="3" placeholder="Share your experience with Black Street Studio" required maxlength="600"></textarea>
@@ -401,7 +402,10 @@ renderWork();
 $("#moreBtn").addEventListener("click",()=>{showMore=!showMore;renderWork();});
 
 const stars=n=>{n=Math.max(1,Math.min(5,Math.round(+n)||5));return "\u2605".repeat(n)+"\u2606".repeat(5-n);};
-function renderRev(){const a=CFG.REVIEWS;$("#rvGrid").innerHTML=a.map(r=>`<div class="rcard"><div class="st">${stars(r.rating)}</div><p>${esc(r.text)}</p><div class="mono">${esc(r.name)}</div></div>`).join("");$("#emptyR").textContent=a.length?"":"Be the first to leave a review.";}
+function renderRev(){const a=CFG.REVIEWS;{const cards=a.map(r=>`<div class="rcard"><div class="st">${stars(r.rating)}</div><p>${esc(r.text)}</p><div class="mono">${esc(r.name)}</div></div>`).join("");
+  if(!a.length)$("#rvGrid").innerHTML="";
+  else{const rep=Math.max(1,Math.ceil(1600/(a.length*358))),half=cards.repeat(rep),dur=Math.max(25,Math.round(a.length*rep*358/55));
+    $("#rvGrid").innerHTML=`<div class="mqt rvt" style="--d:${dur}s">${half}${half.replace(/class="rcard"/g,'class="rcard dup" aria-hidden="true"')}</div>`;}}$("#emptyR").textContent=a.length?"":"Be the first to leave a review.";}
 renderRev();
 function fillContact(){const c=CFG.CONTACT;
   const set=(id,t,h)=>{const el=$(id);if(el)el.innerHTML=t?(h?`<a href="${esc(h)}">${esc(t)}</a>`:esc(t)):"";};
@@ -435,7 +439,7 @@ const tkT=SERVICES.map(s=>s[0]).join("   \u2726   ")+"   \u2726   ";
 $("#tk").innerHTML=`<span>${esc(tkT)}</span><span>${esc(tkT)}</span>`;
 if(!RM){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add("in");io.unobserve(el);setTimeout(()=>{el.classList.remove("rv","in");el.style.transitionDelay="";},1400);}}),{threshold:.1});
-  const arm=()=>document.querySelectorAll("section:not(.hero) .mono,section h2,section p,.tile,.chips,#f,#rf,.rcard").forEach((el,i)=>{if(el.dataset.a)return;el.dataset.a=1;el.classList.add("rv");el.style.transitionDelay=(i%6)*80+"ms";io.observe(el);});
+  const arm=()=>document.querySelectorAll("section:not(.hero) .mono,section h2,section p,.tile,.chips,#f,#rf,.rcard").forEach((el,i)=>{if(el.dataset.a||el.closest(".mq"))return;el.dataset.a=1;el.classList.add("rv");el.style.transitionDelay=(i%6)*80+"ms";io.observe(el);});
   arm();const mo=new MutationObserver(arm);mo.observe($("#works"),{childList:true});mo.observe($("#rvGrid"),{childList:true});
 }
 const bar=$("#bar");
