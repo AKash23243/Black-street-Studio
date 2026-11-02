@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Black Street Studio | Cinematic Production</title>
+<link rel="icon" href="images/logo.png">
 <meta name="description" content="Black Street Studio is a creative production agency for cinematic filmmaking, photography, promotional videos, reels and social media management.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,wght@0,400;1,400&family=Courier+Prime&display=swap">
 <style>
@@ -75,11 +76,24 @@ nav b,nav a{cursor:pointer}
 .hero{max-width:none;margin:0;padding:80px max(5vw,calc((100vw - 1200px)/2));background:linear-gradient(90deg,rgba(14,11,9,.9) 0%,rgba(14,11,9,.6) 50%,rgba(14,11,9,.3) 100%),linear-gradient(0deg,#0e0b09 0%,transparent 25%),url("images/hero.jpg") center/cover no-repeat;animation:none}
 .hero p{color:#dccfb6}
 .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;width:42px;height:42px;border-radius:50%;background:rgba(14,11,9,.7);border:1.5px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:15px;padding-left:3px;pointer-events:none;transition:opacity .25s,transform .25s}.tile:hover .play,.tile:focus-visible .play{opacity:1;transform:translate(-50%,-50%) scale(1)}@media(hover:none){.play{opacity:1;transform:translate(-50%,-50%)}}
+.logo img{height:46px;width:auto;display:block}.flogo{height:120px;width:auto;display:block}
+@media(max-width:640px){.logo img{height:38px}}
+section h2{line-height:1.05}
+@media(max-width:640px){section h2{font-size:42px!important}section{padding:56px 5vw}}
+.mq{overflow:hidden;margin-top:30px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.mqt{display:flex;gap:18px;width:max-content;animation:mq2 var(--d,40s) linear infinite}
+.mq:hover .mqt{animation-play-state:paused}
+.mqt>*{flex:0 0 300px}.mqt.cl>*{flex-basis:230px}
+@keyframes mq2{to{transform:translateX(calc(-50% - 9px))}}
+@media(prefers-reduced-motion:reduce){.mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}}
+.mq.all{overflow:visible;-webkit-mask-image:none;mask-image:none}
+.mq.all .mqt{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));width:auto;animation:none;transform:none}
+.mq.all .mqt>*{flex:none}.mq.all .dup{display:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media(max-width:640px){nav a{margin-left:12px}}
 </style></head><body>
 <div id="bar"></div>
-<nav><b>BLACK STREET STUDIO</b><div><a href="#services">Services</a><a href="#work">Work</a><a href="#clients">Clients</a><a href="#reviews">Reviews</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Book</a></div></nav>
+<nav><b class="logo"><img src="images/logo.png" alt="Black Street Studio"></b><div><a href="#services">Services</a><a href="#work">Work</a><a href="#clients">Clients</a><a href="#reviews">Reviews</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Book</a></div></nav>
 
 <section class="hero" id="top">
 <div class="mono">Cinematic Production</div>
@@ -91,7 +105,8 @@ nav b,nav a{cursor:pointer}
 <div class="ticker" aria-hidden="true"><div class="tk" id="tk"></div></div>
 
 <section id="services"><div class="mono">What we do</div><h2 style="font-size:56px">Services</h2>
-<div class="grid" id="svcGrid"></div></section>
+<div class="mq" id="svcGrid"></div>
+<div style="text-align:center;margin-top:30px"><button class="btn ghost" id="svcToggle" type="button">See all services</button></div></section>
 
 <section id="work"><div class="mono">Portfolio</div><h2 style="font-size:56px">Selected Work</h2>
 <div class="chips" id="chips"></div><div class="grid" id="works"></div><div style="text-align:center;margin-top:30px"><button class="btn ghost" id="moreBtn" type="button" style="display:none">More</button></div><p class="empty" id="emptyW"></p></section>
@@ -99,7 +114,7 @@ nav b,nav a{cursor:pointer}
 <section id="clients"><div class="mono">Our Clients</div><h2 style="font-size:56px">Trusted by 600+ Clients</h2>
 <p style="max-width:720px">From global brands to emerging businesses, we’ve partnered with 600+ clients across industries, creating impactful videos, compelling visuals, and engaging digital content.</p>
 <div class="mono" style="margin-top:34px">Featured Clients</div>
-<div class="grid cl"><div>Samsung</div><div>Sahu Group</div><div>Redink India</div><div>Astral Clothings</div><div>Zepcruit</div><div>Fx Retina</div><div>YogKulam</div><div>Shagun Weddings</div><div>Accidental Doctor</div><div>Bhavaya Kitchen</div></div>
+<div class="mq"><div class="mqt cl" style="--d:36s"><div>Samsung</div><div>Sahu Group</div><div>Redink India</div><div>Astral Clothings</div><div>Zepcruit</div><div>Fx Retina</div><div>YogKulam</div><div>Shagun Weddings</div><div>Accidental Doctor</div><div>Bhavaya Kitchen</div><div>Samsung</div><div>Sahu Group</div><div>Redink India</div><div>Astral Clothings</div><div>Zepcruit</div><div>Fx Retina</div><div>YogKulam</div><div>Shagun Weddings</div><div>Accidental Doctor</div><div>Bhavaya Kitchen</div></div></div>
 <p style="color:var(--mute);font-style:italic;margin-top:40px">Every collaboration is another story brought to life by Black Street Studio.</p></section>
 
 <section id="reviews"><div class="mono">Reviews</div><h2 style="font-size:56px">What Clients Say</h2>
@@ -150,7 +165,7 @@ nav b,nav a{cursor:pointer}
 <p style="margin-top:26px"><b>Black Street Studio</b><br><i>Turning Attention Into Action.</i><br>Instagram: <a style="color:var(--amber)" href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">instagram.com/blackstreet.studio</a></p></div></section>
 
 <footer><div class="fg">
-<div><div class="fl">BLACK STREET STUDIO</div><p class="ft">Turning Attention Into Action.</p></div>
+<div><img class="flogo" src="images/logo.png" alt="Black Street Studio"><p class="ft">Turning Attention Into Action.</p></div>
 <div class="fn"><div class="mono">Navigate</div><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Contact</a></div>
 <div class="fn" id="fSoc"><div class="mono">Follow</div><a href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">Instagram</a></div>
 <div class="fn"><div class="mono">Get in touch</div><span id="fMail"></span><span id="fPhone"></span><span id="fAddr"></span><a class="fb" href="#contact">Start a project</a></div>
@@ -359,7 +374,8 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let db=null,user=null,assets=null,items=CFG.PORTFOLIO.slice(),cat="All",showMore=false;
 
-$("#svcGrid").innerHTML=SERVICES.map(([n,d])=>`<div class="svc" data-s="${esc(n)}"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join("");
+{const h=SERVICES.map(([n,d])=>`<div class="svc" data-s="${esc(n)}"><h3>${esc(n)}</h3><p>${esc(d)}</p></div>`).join("");const h2=h.replace(/class="svc"/g,'class="svc dup" aria-hidden="true"');$("#svcGrid").innerHTML=`<div class="mqt" style="--d:42s">${h}${h2}</div>`;
+  $("#svcToggle").addEventListener("click",()=>{const a=$("#svcGrid").classList.toggle("all");$("#svcToggle").textContent=a?"Slide services":"See all services";});}
 const opts=SERVICES.map(s=>`<option>${esc(s[0])}</option>`).join("");
 $("#svcSel").innerHTML=`<option value="">Service needed</option>`+opts+`<option>Other</option>`;
 document.addEventListener("click",e=>{const s=e.target.closest(".svc");if(s){$("#svcSel").value=s.dataset.s;location.hash="contact";}});
@@ -419,7 +435,7 @@ const tkT=SERVICES.map(s=>s[0]).join("   \u2726   ")+"   \u2726   ";
 $("#tk").innerHTML=`<span>${esc(tkT)}</span><span>${esc(tkT)}</span>`;
 if(!RM){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add("in");io.unobserve(el);setTimeout(()=>{el.classList.remove("rv","in");el.style.transitionDelay="";},1400);}}),{threshold:.1});
-  const arm=()=>document.querySelectorAll("section:not(.hero) .mono,section h2,section p,.svc,.tile,.chips,#f,#rf,.cl div,.rcard").forEach((el,i)=>{if(el.dataset.a)return;el.dataset.a=1;el.classList.add("rv");el.style.transitionDelay=(i%6)*80+"ms";io.observe(el);});
+  const arm=()=>document.querySelectorAll("section:not(.hero) .mono,section h2,section p,.tile,.chips,#f,#rf,.rcard").forEach((el,i)=>{if(el.dataset.a)return;el.dataset.a=1;el.classList.add("rv");el.style.transitionDelay=(i%6)*80+"ms";io.observe(el);});
   arm();const mo=new MutationObserver(arm);mo.observe($("#works"),{childList:true});mo.observe($("#rvGrid"),{childList:true});
 }
 const bar=$("#bar");
