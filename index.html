@@ -565,14 +565,24 @@ const CFG={
   // 4) Approved client reviews, e.g. {name:"Client name",rating:5,text:"Review text"},
   REVIEWS:[
    {
-    "name": "Kittu",
+    "name": "Tanya",
     "rating": 4,
-    "text": "i am very happy they amazingly handel my brand"
+    "text": "Team With Grt Exp"
    },
    {
-    "name": "Akash Agrahari",
+    "name": "Tushar",
+    "rating": 4,
+    "text": "Very Positive Team \nGo with Smooth Work"
+   },
+   {
+    "name": "Deeksha",
     "rating": 5,
     "text": "nice people have a great exp with team"
+   },
+   {
+    "name": "Arun",
+    "rating": 5,
+    "text": "i am very happy they amazingly handle my brand"
    }
   ]
 };
@@ -620,6 +630,7 @@ function fillContact(){const c=CFG.CONTACT;
   set("#fPhone",c.phone,c.phone&&"tel:"+c.phone.replace(/[^+\d]/g,""));set("#fMail",c.email,c.email&&"mailto:"+c.email);set("#fAddr",c.address);
   const box=$("#fSoc");if(box){box.querySelectorAll(".xs").forEach(n=>n.remove());[["behance","Behance"],["vimeo","Vimeo"],["x","X"],["youtube","YouTube"],["facebook","Facebook"]].forEach(([k,l])=>{const u=c[k];if(u&&/^https?:\/\//i.test(u)){const a=document.createElement("a");a.className="xs";a.href=u;a.target="_blank";a.rel="noopener";a.textContent=l;box.appendChild(a);}});}}
 fillContact();
+applyImgs({about:"images/section-about.jpg",contact:"images/section-contact.jpg"});
 // Live content: data.json (edited by admin.html) overrides the starter data above
 fetch("data.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;
   if(Array.isArray(d.portfolio)){items=d.portfolio;showMore=false;renderWork();}

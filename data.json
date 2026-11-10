@@ -184,18 +184,28 @@
  ],
  "reviews": [
   {
-   "name": "Kittu",
+   "name": "Tanya",
    "rating": 4,
-   "text": "i am very happy they amazingly handel my brand"
+   "text": "Team With Grt Exp"
   },
   {
-   "name": "Akash Agrahari",
+   "name": "Tushar",
+   "rating": 4,
+   "text": "Very Positive Team \nGo with Smooth Work"
+  },
+  {
+   "name": "Deeksha",
    "rating": 5,
    "text": "nice people have a great exp with team"
+  },
+  {
+   "name": "Arun",
+   "rating": 5,
+   "text": "i am very happy they amazingly handle my brand"
   }
  ],
  "images": {
-  "about": "",
-  "contact": ""
+  "about": "images/section-about.jpg",
+  "contact": "images/section-contact.jpg"
  }
 }
