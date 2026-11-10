@@ -41,6 +41,8 @@ button.g{background:none;color:var(--cream);border:1px solid var(--mute)}button.
 
   <h2>Portfolio items</h2><div id="pl"></div>
 
+  <h2>Section images</h2><div class="card" id="il"></div>
+
   <h2>Reviews</h2><div id="rl"></div>
   <div class="card"><div class="row"><input id="rn" placeholder="Reviewer name"><select id="rs"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>
   <textarea id="rt" rows="2" placeholder="Review text"></textarea><button id="radd">Add review</button></div>
@@ -81,7 +83,7 @@ async function connect(){
     if(r.status===404){const t=await gh("?ref="+encodeURIComponent(cfg.branch));if(!t.ok)throw new Error("Repository or branch not found. Check the username, repository name and branch.");data={contact:{},portfolio:[],reviews:[]};sha=null;}
     else if(!r.ok)throw new Error("GitHub replied with an error ("+r.status+").");
     else{const j=await r.json();sha=j.sha;data=JSON.parse(unb64(j.content));}
-    data.contact=data.contact||{};data.portfolio=data.portfolio||[];data.reviews=data.reviews||[];
+    data.images=data.images||{about:"",contact:""};data.contact=data.contact||{};data.portfolio=data.portfolio||[];data.reviews=data.reviews||[];
     localStorage.setItem(LS,JSON.stringify(cfg));
     $("#login").hidden=true;$("#app").hidden=false;$("#bar").hidden=false;render();dirty(false);
   }catch(e){m.textContent=e.message;}
@@ -97,6 +99,7 @@ function render(){
     <input data-i="${i}" data-k="video" value="${esc(p.video||"")}" placeholder="Video link (optional)">
     <small>Change thumbnail</small><input type="file" accept="image/*" data-f="${i}">
     <div class="row"><button class="g" data-up="${i}">Move up</button><button class="g" data-dn="${i}">Move down</button><button class="d" data-del="${i}">Delete</button></div></div></div>`).join("")||'<p class="mono">No items yet.</p>';
+  $("#il").innerHTML=[["about","About section image"],["contact","Start a project image"]].map(([k,l])=>{const u=data.images[k];return `<div style="margin-bottom:14px"><b>${l}</b><br>${u?`<img src="${esc(pending[u]?pending[u].preview:u)}" style="width:200px;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);display:block;margin:6px 0">`:'<small>Using the default studio photo</small><br>'}<input type="file" accept="image/*" data-im="${k}"> ${u?`<button class="d" data-imr="${k}">Use default</button>`:""}</div>`;}).join("");
   $("#rl").innerHTML=data.reviews.map((r,i)=>`<div class="card"><b>${esc(r.name)}</b> <span class="mono">${"\u2605".repeat(Math.max(1,Math.min(5,+r.rating||5)))}</span><p>${esc(r.text)}</p><button class="d" data-rdel="${i}">Delete</button></div>`).join("")||'<p class="mono">No reviews yet.</p>';
   $("#cl").innerHTML=CK.map(k=>`<small>${k[0].toUpperCase()+k.slice(1)}${["behance","vimeo","x","youtube","facebook"].includes(k)?" (full https:// link)":""}</small><input data-c="${k}" value="${esc(data.contact[k]||"")}">`).join("");
 }
@@ -125,6 +128,8 @@ $("#pl").addEventListener("click",e=>{const d=e.target.dataset,a=data.portfolio;
   if(d.del!==undefined&&confirm("Delete this portfolio item?")){a.splice(+d.del,1);render();dirty();}
   const mv=(i,n)=>{if(i+n<0||i+n>=a.length)return;[a[i],a[i+n]]=[a[i+n],a[i]];render();dirty();};
   if(d.up!==undefined)mv(+d.up,-1);if(d.dn!==undefined)mv(+d.dn,1);});
+$("#il").addEventListener("change",async e=>{const k=e.target.dataset.im;if(!k||!e.target.files[0])return;try{data.images[k]=await addImage(e.target.files[0],"section-"+k);render();dirty();}catch(err){flash(err.message);}});
+$("#il").addEventListener("click",e=>{const k=e.target.dataset.imr;if(k){data.images[k]="";render();dirty();}});
 $("#radd").onclick=()=>{const n=$("#rn").value.trim(),t=$("#rt").value.trim();if(!n||!t){flash("Enter the name and the review.");return;}
   data.reviews.unshift({name:n,rating:+$("#rs").value,text:t});$("#rn").value="";$("#rt").value="";render();dirty();};
 $("#rl").addEventListener("click",e=>{const i=e.target.dataset.rdel;if(i!==undefined&&confirm("Delete this review?")){data.reviews.splice(+i,1);render();dirty();}});
@@ -134,7 +139,7 @@ $("#save").onclick=async()=>{
   const btn=$("#save");btn.disabled=true;
   try{
     for(const[path,img]of Object.entries(pending)){
-      if(!data.portfolio.some(p=>p.url===path))continue;
+      if(!data.portfolio.some(p=>p.url===path)&&!Object.values(data.images||{}).includes(path))continue;
       flash("Uploading "+path+"...");
       const r=await gh(path,{method:"PUT",body:JSON.stringify({message:"Add image "+path,content:img.b64,branch:cfg.branch})});
       if(!r.ok)throw new Error("Image upload failed ("+r.status+").");

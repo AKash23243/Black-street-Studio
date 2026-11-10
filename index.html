@@ -3,8 +3,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Black Street Studio | Cinematic Production</title>
 <link rel="icon" href="images/logo.png">
+<link rel="canonical" href="https://akash23243.github.io/Black-street-Studio/">
 <meta name="description" content="Black Street Studio is a creative production agency for cinematic filmmaking, photography, promotional videos, reels and social media management.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,wght@0,400;1,400&family=Courier+Prime&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,wght@0,400;1,400&family=Courier+Prime&family=Noto+Sans+Devanagari:wght@400;600&display=swap">
 <style>
 :root{color-scheme:dark;--bg:#0e0b09;--card:#18130f;--cream:#f3e9d2;--amber:#e8a33d;--brick:#9c3b26;--mute:#a89c85;--line:#2e2620;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:70px}*{box-sizing:border-box}
@@ -68,12 +69,12 @@ nav>div{display:flex;flex-wrap:wrap;justify-content:flex-end}
 .rcard{background:var(--card);border:1px solid var(--line);padding:24px}.rcard p{margin:10px 0}.st{color:var(--amber);letter-spacing:.2em}
 #blogS{display:none;max-width:760px}body.blog #blogS{display:block}
 body.blog .hero,body.blog .ticker,body.blog section:not(#blogS),body.blog #admin{display:none}
-#blogS h1{font-size:clamp(44px,8vw,84px);line-height:.95;margin:10px 0 14px}#blogS h3{font-size:34px;color:var(--amber);margin:34px 0 6px}
+#blogS h1{font-size:clamp(32px,4.6vw,54px);line-height:1.1;margin:10px 0 14px}#blogS h3{font-size:34px;color:var(--amber);margin:34px 0 6px}
 #blogS p{font-size:20px;margin:0 0 16px}#blogS .by{color:var(--mute);font-style:italic}
 #blogS .back{background:none;border:0;color:var(--amber);cursor:pointer;font:14px 'Courier Prime',monospace;letter-spacing:.1em;text-transform:uppercase;padding:0 0 20px}
 #blogS .end{border-top:1px solid var(--line);margin-top:40px;padding-top:30px}
 nav b,nav a{cursor:pointer}
-.hero{max-width:none;margin:0;padding:80px max(5vw,calc((100vw - 1200px)/2));background:linear-gradient(90deg,rgba(14,11,9,.9) 0%,rgba(14,11,9,.6) 50%,rgba(14,11,9,.3) 100%),linear-gradient(0deg,#0e0b09 0%,transparent 25%),url("images/hero.jpg") center/cover no-repeat;animation:none}
+.hero{max-width:none;margin:0;padding:80px max(5vw,calc((100vw - 1200px)/2));background:linear-gradient(90deg,rgba(14,11,9,.9) 0%,rgba(14,11,9,.6) 50%,rgba(14,11,9,.3) 100%),linear-gradient(0deg,#0e0b09 0%,transparent 25%),var(--himg) center/cover no-repeat;animation:none}
 .hero p{color:#dccfb6}
 .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;width:42px;height:42px;border-radius:50%;background:rgba(14,11,9,.7);border:1.5px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:15px;padding-left:3px;pointer-events:none;transition:opacity .25s,transform .25s}.tile:hover .play,.tile:focus-visible .play{opacity:1;transform:translate(-50%,-50%) scale(1)}@media(hover:none){.play{opacity:1;transform:translate(-50%,-50%)}}
 .logo img{height:46px;width:auto;display:block}.flogo{height:120px;width:auto;display:block}
@@ -90,6 +91,29 @@ section h2{line-height:1.05}
 .mq.all .mqt{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));width:auto;animation:none;transform:none}
 .mq.all .mqt>*{flex:none}.mq.all .dup{display:none}
 .mqt.rvt>*{flex-basis:340px}.rcard{display:flex;flex-direction:column}
+:root{--himg:url("images/hero.jpg")}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:stretch}
+.sideimg{min-height:340px;border-radius:20px;border:1px solid var(--line);background:var(--himg) center/cover no-repeat}
+#imgContact{background-position:88% center}
+@media(max-width:800px){.split{grid-template-columns:1fr;gap:28px}.sideimg{min-height:0;aspect-ratio:16/10}}
+body{overflow-x:clip}
+.sideimg{transition:opacity 1.2s cubic-bezier(.65,0,.35,1),transform 1.2s cubic-bezier(.65,0,.35,1)}
+.sideimg.sx{opacity:0;transform:translateX(90px)}
+@media(max-width:800px){.sideimg.sx{transform:translateY(50px)}}
+.arts{display:grid;gap:12px;margin:18px 0 8px}.arts a{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;color:var(--cream);text-decoration:none;transition:border-color .25s,transform .25s}
+.arts a:hover{border-color:var(--amber);transform:translateY(-2px)}.arts b{display:block;font:400 26px/1.15 'Bebas Neue',Impact,sans-serif;letter-spacing:.03em;margin-top:6px}
+.arts+.mono{margin-top:34px}
+.arts{display:grid;gap:12px;margin:22px 0 8px}.arts a{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;color:var(--cream);text-decoration:none;transition:border-color .25s,transform .25s}
+.arts a:hover{border-color:var(--amber);transform:translateY(-2px)}.arts b{display:block;font:400 26px/1.2 'Bebas Neue',Impact,sans-serif;letter-spacing:.03em;margin-top:6px}
+.arts a[lang=hi] b{font-family:'Noto Sans Devanagari',sans-serif;font-weight:600;font-size:21px;letter-spacing:0}
+.post h2{font:400 34px/1.1 'Bebas Neue',Impact,sans-serif;color:var(--amber);margin:38px 0 8px;letter-spacing:.03em}
+.post .faq h3{font-size:26px;color:var(--cream);margin:0 0 4px}.post .meta{color:var(--mute);font:14px 'Courier Prime',monospace;letter-spacing:.06em}
+.post .intro{font-size:22px;color:#dccfb6}.post ul,.post ol{padding-left:24px;margin:0 0 16px;font-size:20px}.post li{margin:6px 0}
+.post .note{background:var(--card);border-left:3px solid var(--amber);border-radius:6px;padding:16px 18px;margin:24px 0}.post .note p{margin:0}
+.post .faq{border-top:1px solid var(--line);padding:14px 0}.post .cta{border:1px solid var(--amber);border-radius:16px;padding:24px;margin-top:40px}.post .cta h2{margin-top:0}
+.post a{color:var(--amber)}.post a.btn{color:#1a1207}
+.post[lang=hi]{font-family:'Noto Sans Devanagari',sans-serif}.post[lang=hi] h1,.post[lang=hi] h2,.post[lang=hi] h3{font-family:'Noto Sans Devanagari',sans-serif;font-weight:600;letter-spacing:0}
+.post[lang=hi] p,.post[lang=hi] li{font-size:18px;line-height:1.85}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media(max-width:640px){nav a{margin-left:12px}}
 </style></head><body>
@@ -125,11 +149,11 @@ section h2{line-height:1.05}
 <textarea name="text" rows="3" placeholder="Share your experience with Black Street Studio" required maxlength="600"></textarea>
 <button class="btn" type="submit">Submit review</button><div class="msg" id="rmsg"></div></form></section>
 
-<section id="about"><div class="mono">About</div><h2 style="font-size:56px">The Studio</h2>
+<section id="about"><div class="split"><div><div class="mono">About</div><h2 style="font-size:56px">The Studio</h2>
 <p style="max-width:700px">Black Street Studio is a creative production agency with 5+ years of experience in cinematic filmmaking, photography, promotional videos, reels, and social media management.</p>
-<p style="max-width:700px">Our mission is to turn attention into action through powerful storytelling, creative visuals, and digital strategies that help brands grow.</p></section>
+<p style="max-width:700px">Our mission is to turn attention into action through powerful storytelling, creative visuals, and digital strategies that help brands grow.</p></div><div class="sideimg" id="imgAbout" role="img" aria-label="Black Street Studio"></div></div></section>
 
-<section id="contact"><h2 style="font-size:56px">Start a project</h2>
+<section id="contact"><div class="split"><div><h2 style="font-size:56px">Start a project</h2>
 <form id="f">
 <input name="name" placeholder="Your name" required maxlength="80">
 <input name="contact" placeholder="Phone or email" required maxlength="120">
@@ -137,10 +161,192 @@ section h2{line-height:1.05}
 <input name="date" type="date" aria-label="Preferred date">
 <textarea name="details" rows="4" placeholder="Tell us about your project" maxlength="1500"></textarea>
 <button class="btn" type="submit">Send enquiry</button><div class="msg" id="msg"></div>
-</form></section>
+</form></div><div class="sideimg" id="imgContact" role="img" aria-label="Start a project"></div></div></section>
 
 <section id="blogS"><button class="back" id="blogBack" type="button">← Back to home</button>
-<div class="mono">Blog</div>
+<div id="blogList"><div class="mono">Blog</div><h1>Our Blog</h1>
+<div class="arts">
+<a href="#blog" data-post="p-video-ideas"><span class="mono">Video Marketing</span><b>10 Video Marketing Ideas for Small Businesses</b></a>
+<a href="blog/video-production-company-lucknow/" data-post="p-seo-en"><span class="mono">Video Production &middot; 8–10 min read</span><b>Video Production Company in Lucknow: A Complete Guide</b></a>
+<a href="hi/blog/video-production-company-lucknow/" lang="hi" hreflang="hi" data-post="p-seo-hi"><span class="mono">हिंदी &middot; वीडियो प्रोडक्शन</span><b>लखनऊ में वीडियो प्रोडक्शन कंपनी: प्रोफेशनल वीडियो प्रोडक्शन की संपूर्ण गाइड</b></a>
+<a href="#blog" data-post="p-social"><span class="mono">Branding &amp; Social Media Marketing</span><b>How to Make Your Brand Stand Out on Social Media</b></a>
+</div></div>
+<article class="post" id="p-video-ideas" hidden><button class="back pb" type="button">← All articles</button>
+<p class="meta">By Black Street Studio</p>
+<h1>10 Video Marketing Ideas for Small Businesses</h1>
+<p class="intro">Video marketing has become an important part of digital communication. Small businesses can use videos to introduce their products, explain services, connect with customers and build brand awareness.</p>
+<p>You don’t always need a large production budget to create useful video content. A clear message, relevant idea and consistent publishing strategy can make a difference.</p>
+<h3>1. Brand Introduction Video</h3>
+<p>Introduce your business, its story, services and what makes it different.</p>
+<h3>2. Product Demonstration Video</h3>
+<p>Show how your product works, its features and how customers can use it.</p>
+<h3>3. Behind-the-Scenes Video</h3>
+<p>Show your workplace, team, production process and daily activities.</p>
+<h3>4. Customer Testimonial Video</h3>
+<p>Share genuine customer experiences with their permission.</p>
+<h3>5. Frequently Asked Questions</h3>
+<p>Create short videos answering common questions about your products or services.</p>
+<h3>6. Before-and-After Videos</h3>
+<p>Show the transformation created by your product or service.</p>
+<h3>7. Educational Videos</h3>
+<p>Share useful tips, tutorials and industry knowledge.</p>
+<h3>8. Promotional Videos</h3>
+<p>Introduce new launches, seasonal campaigns and special offers.</p>
+<h3>9. Team Introduction Videos</h3>
+<p>Introduce the people behind your business and show the human side of your brand.</p>
+<h3>10. Customer Experience Videos</h3>
+<p>Show how customers interact with your products or services.</p>
+<h2>How to Create an Effective Video Marketing Strategy</h2>
+<ul><li>Understand your target audience.</li><li>Choose relevant video topics.</li><li>Prepare a monthly content calendar.</li><li>Maintain consistent branding.</li><li>Use clear audio and visuals.</li><li>Add captions where useful.</li><li>Track engagement and enquiries.</li></ul>
+<div class="cta"><p><a class="btn" href="#contact">Book a shoot</a></p></div>
+</article>
+<article class="post" id="p-seo-en" hidden lang="en"><button class="back pb" type="button">← All articles</button>
+
+      <p class="meta">By Black Street Studio · Video Production · 8–10 minute read</p>
+      <h1>Video Production Company in Lucknow: A Complete Guide to Professional Video Production</h1>
+      <p class="intro">A well-produced video can introduce your business, explain a service, showcase a product and give people a clearer reason to remember your brand. Whether you run a growing business in Lucknow or work with customers across India, choosing the right video production partner starts with understanding what you need the video to achieve.</p>
+
+      <p>Video is now an important part of how businesses communicate online. A short promotional film, a customer story, a product demonstration or a series of social media reels can help make a brand’s message easier to understand. But effective video production is not simply about using a camera. It combines planning, storytelling, lighting, sound, filming and editing into one clear message.</p>
+
+      <h2>What does a video production company do?</h2>
+      <p>A video production company helps take an idea from an initial brief to a finished video. Depending on the project, the work may include concept development, scriptwriting, planning, location selection, filming, direction, editing, colour correction, sound design, motion graphics and final delivery in the formats a business needs.</p>
+      <p>A professional team should first understand the audience, platform and purpose of the video. A film made for a website homepage may need a different pace and format from a vertical reel designed for Instagram or YouTube Shorts.</p>
+
+      <h2>Common video production services for businesses</h2>
+      <h3>1. Corporate videos</h3>
+      <p>Corporate videos introduce a company, its people, values, workplace or capabilities. They can be used on websites, presentations, recruitment pages and business profiles. A useful corporate film focuses on the information a prospective customer or partner needs, rather than trying to include everything about the organisation.</p>
+      <h3>2. Promotional and advertisement films</h3>
+      <p>Promotional videos are created to communicate a product, service, offer or campaign. They often use a strong opening, a simple central message and a clear next step. Before production begins, decide what viewers should understand or do after watching.</p>
+      <h3>3. Product videos and photography</h3>
+      <p>Product-focused content can show details, features, use cases, packaging and the experience of using an item. Consistent lighting, thoughtful composition and clear close-up shots help present products accurately across websites, catalogues and social platforms.</p>
+      <h3>4. Social media reels and short-form videos</h3>
+      <p>Short-form videos are useful for tips, demonstrations, behind-the-scenes stories, launches and quick brand introductions. Plan for vertical framing when the primary destination is a mobile-first platform. Captions and clear audio also help make the message easier to follow.</p>
+      <h3>5. YouTube videos, interviews and documentaries</h3>
+      <p>Longer videos can explain a subject in depth, document an event, feature an interview or tell a brand story. These projects need careful attention to structure, sound quality and audience retention.</p>
+      <h3>6. Green screen and studio production</h3>
+      <p>Green screen production can place a presenter or subject against a designed background or visual environment. It is useful for explainers, presentations and selected advertising formats, provided the lighting, subject separation and editing are planned properly.</p>
+
+      <h2>How the video production process works</h2>
+      <ol>
+        <li><strong>Brief and objective:</strong> Define the audience, key message, platform, duration and desired action.</li>
+        <li><strong>Concept and script:</strong> Develop a focused idea and a script or shot outline that supports the objective.</li>
+        <li><strong>Pre-production:</strong> Plan the schedule, locations, cast or presenters, props, equipment and permissions.</li>
+        <li><strong>Production:</strong> Film the planned scenes while monitoring framing, lighting, sound and continuity.</li>
+        <li><strong>Post-production:</strong> Edit the footage, refine the sound and colour, add graphics where needed and prepare review versions.</li>
+        <li><strong>Delivery:</strong> Export the approved video in the aspect ratios, resolutions and file formats required for each platform.</li>
+      </ol>
+      <div class="note"><strong>Practical tip:</strong> Share examples of videos you like, your target audience, where the video will be published and the approximate budget before production. A clear brief helps the production team recommend a realistic approach.</div>
+
+      <h2>How to choose the right video production company in Lucknow</h2>
+      <p>There are many types of production providers, from individual videographers to full creative teams. Compare them on the needs of your project, not only on the equipment they use.</p>
+      <ul>
+        <li><strong>Review relevant work:</strong> Look for examples similar to your industry, audience or video format.</li>
+        <li><strong>Check the complete process:</strong> Ask who handles scripting, filming, editing, revisions and delivery.</li>
+        <li><strong>Discuss the deliverables:</strong> Confirm video length, number of edits, aspect ratios, subtitles and file formats.</li>
+        <li><strong>Understand the timeline:</strong> Agree on shoot dates, review rounds and final delivery dates.</li>
+        <li><strong>Clarify usage rights:</strong> Discuss music licensing, talent releases, footage ownership and where the content can be used.</li>
+        <li><strong>Ask for a written estimate:</strong> Make sure the quote explains what is included and what may cost extra.</li>
+      </ul>
+
+      <h2>What affects video production cost in India?</h2>
+      <p>There is no single price for every video. The budget depends on the scope and production requirements. Common factors include the length and complexity of the video, number of shoot locations, crew size, equipment, actors or presenters, travel, set design, animation, voice-over, music licensing and editing requirements.</p>
+      <p>Instead of comparing quotes by price alone, compare the deliverables. Ask whether pre-production, lighting, sound recording, editing, revisions, subtitles and platform-specific versions are included. This makes it easier to understand the value of each proposal.</p>
+
+      <h2>Why businesses in Lucknow and across India use video content</h2>
+      <p>Video can help a business demonstrate a product, introduce its team, explain a process and communicate its personality. Local businesses may use it to reach audiences in Lucknow and nearby cities, while organisations serving customers across India can adapt the same core message for different platforms and audience groups.</p>
+      <p>For better results, connect each video to a wider content plan. A main brand film can be edited into shorter clips, still frames, behind-the-scenes posts and website content. Keep the message consistent while adapting the format to each channel.</p>
+
+      <h2>Why work with Black Street Studio?</h2>
+      <p>Black Street Studio is a creative production agency working across cinematic filmmaking, photography, promotional videos, reels and social media management. The studio’s approach is built around combining visual storytelling with content that communicates a brand’s message clearly.</p>
+      <p>If you are planning a corporate film, promotional video, product shoot, social media reel or another creative project, start with a clear brief and discuss the production requirements before confirming the scope.</p>
+
+      <h2>Frequently asked questions</h2>
+      <section class="faq"><h3>What types of videos can a production company make?</h3><p>Depending on its services, a production company may create corporate films, promotional videos, advertisements, product videos, interviews, event films, documentaries, YouTube content and short-form social media videos.</p></section>
+      <section class="faq"><h3>How long does it take to produce a business video?</h3><p>The timeline depends on scripting, shoot complexity, locations, approvals and editing. A simple project may take less time than a multi-location film with animation or several review rounds. Confirm a schedule before the shoot.</p></section>
+      <section class="faq"><h3>Should my business make vertical or horizontal videos?</h3><p>Choose the format based on where the video will appear. Vertical formats are commonly used for mobile-first short-form content, while horizontal formats are often suitable for websites, presentations and many YouTube videos. Some projects need both versions.</p></section>
+      <section class="faq"><h3>Can one shoot create content for multiple platforms?</h3><p>Often, yes. With planning, a shoot can produce a main video plus shorter edits, cut-downs and still images. Discuss the required deliverables before filming so the shot list supports them.</p></section>
+      <section class="faq"><h3>How do I get a quote from Black Street Studio?</h3><p>Share your project objective, preferred video style, location, expected duration, publishing platforms and target timeline through the studio website. These details help define the scope for an estimate.</p></section>
+
+      <div class="cta">
+        <h2>Planning a video for your brand?</h2>
+        <p>Explore Black Street Studio’s creative production work and get in touch to discuss your next project in Lucknow or elsewhere in India.</p>
+        <p><a class="btn" href="#contact">Book a shoot</a> &nbsp; <a href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </article>
+<article class="post" id="p-seo-hi" hidden lang="hi"><button class="back pb" type="button">← All articles</button>
+
+      <p class="meta">Black Street Studio द्वारा · वीडियो प्रोडक्शन · लगभग 8–10 मिनट का लेख</p>
+      <h1>लखनऊ में वीडियो प्रोडक्शन कंपनी: प्रोफेशनल वीडियो प्रोडक्शन की संपूर्ण गाइड</h1>
+      <p class="intro">एक अच्छी तरह बनाया गया वीडियो आपके बिज़नेस का परिचय दे सकता है, किसी सेवा को समझा सकता है, प्रोडक्ट की खूबियाँ दिखा सकता है और लोगों को आपके ब्रांड को याद रखने में मदद कर सकता है। चाहे आपका बिज़नेस लखनऊ में हो या आप पूरे भारत में ग्राहकों तक पहुँचना चाहते हों, सही वीडियो प्रोडक्शन पार्टनर चुनने की शुरुआत इस बात से होती है कि आप वीडियो के ज़रिए हासिल क्या करना चाहते हैं।</p>
+
+      <p>आज वीडियो बिज़नेस कम्युनिकेशन का एक महत्वपूर्ण माध्यम बन चुका है। प्रमोशनल फिल्म, ग्राहक की कहानी, प्रोडक्ट डेमो या सोशल मीडिया रील्स के ज़रिए किसी ब्रांड का संदेश आसानी से समझाया जा सकता है। लेकिन प्रभावी वीडियो प्रोडक्शन केवल कैमरा इस्तेमाल करने तक सीमित नहीं है। इसमें सही योजना, कहानी, लाइटिंग, साउंड, शूटिंग और एडिटिंग का संतुलन ज़रूरी होता है।</p>
+
+      <h2>वीडियो प्रोडक्शन कंपनी क्या काम करती है?</h2>
+      <p>वीडियो प्रोडक्शन कंपनी शुरुआती आइडिया से लेकर फाइनल वीडियो तैयार होने तक की प्रक्रिया में मदद करती है। प्रोजेक्ट के अनुसार इसमें कॉन्सेप्ट, स्क्रिप्ट, शूट प्लानिंग, लोकेशन चयन, निर्देशन, शूटिंग, एडिटिंग, कलर करेक्शन, साउंड डिज़ाइन, मोशन ग्राफिक्स और फाइनल वीडियो डिलीवरी शामिल हो सकते हैं।</p>
+      <p>एक प्रोफेशनल टीम को सबसे पहले आपकी ऑडियंस, प्लेटफॉर्म और वीडियो का उद्देश्य समझना चाहिए। वेबसाइट के होमपेज के लिए बनाई गई फिल्म का अंदाज़ Instagram या YouTube Shorts की वर्टिकल रील से अलग हो सकता है।</p>
+
+      <h2>बिज़नेस के लिए वीडियो प्रोडक्शन की प्रमुख सेवाएँ</h2>
+      <h3>1. कॉर्पोरेट वीडियो</h3>
+      <p>कॉर्पोरेट वीडियो किसी कंपनी, उसकी टीम, काम करने के तरीके, मूल्यों और सुविधाओं का परिचय देते हैं। इनका उपयोग वेबसाइट, प्रेज़ेंटेशन, रिक्रूटमेंट और बिज़नेस प्रोफाइल में किया जा सकता है। एक अच्छा कॉर्पोरेट वीडियो वही जानकारी सामने रखता है जो संभावित ग्राहक या पार्टनर जानना चाहते हैं।</p>
+      <h3>2. प्रमोशनल और एडवरटाइजिंग फिल्म</h3>
+      <p>प्रमोशनल वीडियो किसी प्रोडक्ट, सर्विस, ऑफर या कैंपेन का संदेश पहुँचाने के लिए बनाए जाते हैं। इनमें शुरुआत आकर्षक होनी चाहिए, मुख्य संदेश स्पष्ट होना चाहिए और दर्शक को अगला कदम समझ आना चाहिए। शूट से पहले तय करें कि वीडियो देखने के बाद दर्शक क्या समझें या क्या करें।</p>
+      <h3>3. प्रोडक्ट वीडियो और फोटोग्राफी</h3>
+      <p>प्रोडक्ट कंटेंट में उसकी डिटेल, फीचर्स, उपयोग, पैकेजिंग और अनुभव दिखाया जा सकता है। सही लाइटिंग, कंपोज़िशन और क्लोज़-अप शॉट्स वेबसाइट, कैटलॉग और सोशल मीडिया पर प्रोडक्ट को बेहतर तरीके से प्रस्तुत करने में मदद करते हैं।</p>
+      <h3>4. सोशल मीडिया रील्स और शॉर्ट वीडियो</h3>
+      <p>रील्स का उपयोग टिप्स, डेमो, बिहाइंड-द-सीन्स, नए प्रोडक्ट लॉन्च और ब्रांड परिचय के लिए किया जा सकता है। यदि वीडियो मोबाइल-फर्स्ट प्लेटफॉर्म के लिए है, तो वर्टिकल फ्रेमिंग की योजना पहले से बनाएँ। स्पष्ट आवाज़ और कैप्शन भी संदेश समझने में मदद करते हैं।</p>
+      <h3>5. YouTube वीडियो, इंटरव्यू और डॉक्यूमेंट्री</h3>
+      <p>लंबे वीडियो किसी विषय को विस्तार से समझाने, इवेंट रिकॉर्ड करने, इंटरव्यू दिखाने या ब्रांड की कहानी बताने के लिए उपयोगी होते हैं। ऐसे प्रोजेक्ट में कंटेंट की संरचना, साउंड क्वालिटी और दर्शकों की रुचि बनाए रखना महत्वपूर्ण है।</p>
+      <h3>6. ग्रीन स्क्रीन और स्टूडियो प्रोडक्शन</h3>
+      <p>ग्रीन स्क्रीन के ज़रिए किसी प्रेज़ेंटर या विषय को डिज़ाइन किए गए बैकग्राउंड या विज़ुअल वातावरण में दिखाया जा सकता है। एक्सप्लेनर, प्रेज़ेंटेशन और कुछ विज्ञापन फॉर्मेट में यह उपयोगी है। इसके लिए लाइटिंग, सब्जेक्ट और बैकग्राउंड के बीच सही दूरी और एडिटिंग की योजना ज़रूरी है।</p>
+
+      <h2>वीडियो प्रोडक्शन की प्रक्रिया कैसे होती है?</h2>
+      <ol>
+        <li><strong>ब्रीफ और उद्देश्य:</strong> ऑडियंस, मुख्य संदेश, प्लेटफॉर्म, वीडियो की अवधि और अपेक्षित परिणाम तय करें।</li>
+        <li><strong>कॉन्सेप्ट और स्क्रिप्ट:</strong> उद्देश्य के अनुसार एक स्पष्ट आइडिया और स्क्रिप्ट या शॉट लिस्ट तैयार करें।</li>
+        <li><strong>प्री-प्रोडक्शन:</strong> शूट शेड्यूल, लोकेशन, कलाकार या प्रेज़ेंटर, प्रॉप्स, उपकरण और आवश्यक अनुमति की योजना बनाएँ।</li>
+        <li><strong>प्रोडक्शन:</strong> फ्रेमिंग, लाइटिंग, साउंड और कंटिन्यूटी का ध्यान रखते हुए शूट करें।</li>
+        <li><strong>पोस्ट-प्रोडक्शन:</strong> फुटेज एडिट करें, साउंड और कलर सुधारें, ज़रूरत के अनुसार ग्राफिक्स जोड़ें और रिव्यू वर्ज़न तैयार करें।</li>
+        <li><strong>डिलीवरी:</strong> हर प्लेटफॉर्म के लिए ज़रूरी रेशियो, रेज़ोल्यूशन और फाइल फॉर्मेट में फाइनल वीडियो दें।</li>
+      </ol>
+      <div class="note"><strong>काम की सलाह:</strong> प्रोडक्शन शुरू होने से पहले अपनी पसंद के वीडियो के उदाहरण, टारगेट ऑडियंस, पब्लिशिंग प्लेटफॉर्म और अनुमानित बजट साझा करें। इससे टीम आपके लिए व्यावहारिक प्लान बना सकती है।</div>
+
+      <h2>लखनऊ में सही वीडियो प्रोडक्शन कंपनी कैसे चुनें?</h2>
+      <p>वीडियो प्रोडक्शन के लिए आपको अलग-अलग तरह के विकल्प मिल सकते हैं—स्वतंत्र वीडियोग्राफर से लेकर पूरी क्रिएटिव टीम तक। केवल कैमरा या उपकरण देखकर फैसला न करें। अपने प्रोजेक्ट की ज़रूरतों के आधार पर तुलना करें।</p>
+      <ul>
+        <li><strong>काम के उदाहरण देखें:</strong> अपने उद्योग, ऑडियंस या वीडियो फॉर्मेट से मिलता-जुलता पोर्टफोलियो देखें।</li>
+        <li><strong>पूरी प्रक्रिया समझें:</strong> पूछें कि स्क्रिप्ट, शूटिंग, एडिटिंग, रिविज़न और डिलीवरी कौन संभालेगा।</li>
+        <li><strong>डिलीवरी स्पष्ट करें:</strong> वीडियो की अवधि, एडिट की संख्या, रेशियो, सबटाइटल और फाइल फॉर्मेट तय करें।</li>
+        <li><strong>टाइमलाइन तय करें:</strong> शूट की तारीख, रिव्यू राउंड और फाइनल डिलीवरी की तारीख पर सहमति बनाएँ।</li>
+        <li><strong>इस्तेमाल के अधिकार पूछें:</strong> म्यूज़िक लाइसेंस, कलाकार की अनुमति, फुटेज के अधिकार और कंटेंट के उपयोग पर चर्चा करें।</li>
+        <li><strong>लिखित कोटेशन लें:</strong> कोटेशन में शामिल काम और अतिरिक्त खर्च की जानकारी स्पष्ट होनी चाहिए।</li>
+      </ul>
+
+      <h2>भारत में वीडियो प्रोडक्शन की लागत किन बातों पर निर्भर करती है?</h2>
+      <p>हर वीडियो की कीमत एक जैसी नहीं होती। बजट प्रोजेक्ट के दायरे और ज़रूरतों पर निर्भर करता है। वीडियो की लंबाई और जटिलता, शूट लोकेशन की संख्या, क्रू, उपकरण, कलाकार या प्रेज़ेंटर, यात्रा, सेट डिज़ाइन, एनीमेशन, वॉइस-ओवर, म्यूज़िक लाइसेंस और एडिटिंग की ज़रूरतें लागत को प्रभावित कर सकती हैं।</p>
+      <p>केवल कीमत के आधार पर कोटेशन की तुलना न करें। यह भी देखें कि प्री-प्रोडक्शन, लाइटिंग, साउंड रिकॉर्डिंग, एडिटिंग, रिविज़न, सबटाइटल और अलग-अलग प्लेटफॉर्म के लिए वर्ज़न शामिल हैं या नहीं।</p>
+
+      <h2>लखनऊ और पूरे भारत के बिज़नेस वीडियो कंटेंट का उपयोग क्यों करते हैं?</h2>
+      <p>वीडियो किसी बिज़नेस को प्रोडक्ट दिखाने, टीम का परिचय देने, प्रक्रिया समझाने और ब्रांड की पहचान सामने लाने में मदद कर सकता है। लखनऊ के स्थानीय बिज़नेस इसका उपयोग शहर और आसपास के ग्राहकों तक पहुँचने के लिए कर सकते हैं। पूरे भारत में काम करने वाली कंपनियाँ एक मुख्य संदेश को अलग-अलग प्लेटफॉर्म और ऑडियंस के अनुसार ढाल सकती हैं।</p>
+      <p>बेहतर परिणाम के लिए हर वीडियो को एक बड़े कंटेंट प्लान से जोड़ें। एक मुख्य ब्रांड फिल्म से छोटे क्लिप, स्टिल इमेज, बिहाइंड-द-सीन्स पोस्ट और वेबसाइट कंटेंट तैयार किया जा सकता है। हर प्लेटफॉर्म के अनुसार फॉर्मेट बदलें, लेकिन ब्रांड का संदेश एक जैसा रखें।</p>
+
+      <h2>Black Street Studio के साथ काम क्यों करें?</h2>
+      <p>Black Street Studio एक क्रिएटिव प्रोडक्शन एजेंसी है, जो सिनेमैटिक फिल्ममेकिंग, फोटोग्राफी, प्रमोशनल वीडियो, रील्स और सोशल मीडिया मैनेजमेंट के क्षेत्र में काम करती है। इसका उद्देश्य विज़ुअल स्टोरीटेलिंग और स्पष्ट ब्रांड कम्युनिकेशन को साथ लाना है।</p>
+      <p>यदि आप कॉर्पोरेट फिल्म, प्रमोशनल वीडियो, प्रोडक्ट शूट, सोशल मीडिया रील या किसी अन्य क्रिएटिव प्रोजेक्ट की योजना बना रहे हैं, तो पहले अपना ब्रीफ तैयार करें और काम का दायरा तय करने के लिए चर्चा करें।</p>
+
+      <h2>अक्सर पूछे जाने वाले सवाल</h2>
+      <section class="faq"><h3>वीडियो प्रोडक्शन कंपनी किस तरह के वीडियो बना सकती है?</h3><p>सेवाओं के अनुसार कंपनी कॉर्पोरेट फिल्म, प्रमोशनल वीडियो, विज्ञापन, प्रोडक्ट वीडियो, इंटरव्यू, इवेंट फिल्म, डॉक्यूमेंट्री, YouTube कंटेंट और सोशल मीडिया रील्स बना सकती है।</p></section>
+      <section class="faq"><h3>एक बिज़नेस वीडियो बनाने में कितना समय लगता है?</h3><p>समय स्क्रिप्ट, शूट की जटिलता, लोकेशन, अप्रूवल और एडिटिंग पर निर्भर करता है। एनीमेशन या कई रिविज़न वाले प्रोजेक्ट में अधिक समय लग सकता है। शूट से पहले टाइमलाइन तय करें।</p></section>
+      <section class="faq"><h3>बिज़नेस के लिए वर्टिकल वीडियो बनवाएँ या हॉरिज़ॉन्टल?</h3><p>फॉर्मेट प्लेटफॉर्म के अनुसार चुनें। मोबाइल-फर्स्ट शॉर्ट वीडियो के लिए वर्टिकल फॉर्मेट आम है, जबकि वेबसाइट, प्रेज़ेंटेशन और कई YouTube वीडियो के लिए हॉरिज़ॉन्टल फॉर्मेट उपयोगी होता है। कुछ प्रोजेक्ट में दोनों वर्ज़न चाहिए होते हैं।</p></section>
+      <section class="faq"><h3>क्या एक ही शूट से कई प्लेटफॉर्म के लिए कंटेंट बन सकता है?</h3><p>हाँ, सही योजना के साथ एक शूट से मुख्य वीडियो, छोटे एडिट, कट-डाउन और स्टिल इमेज तैयार किए जा सकते हैं। शूट से पहले सभी डिलीवरी तय कर लें ताकि शॉट लिस्ट उसी के अनुसार बने।</p></section>
+      <section class="faq"><h3>Black Street Studio से कोटेशन कैसे लें?</h3><p>वेबसाइट के ज़रिए अपने प्रोजेक्ट का उद्देश्य, पसंदीदा वीडियो स्टाइल, लोकेशन, अनुमानित अवधि, पब्लिशिंग प्लेटफॉर्म और टाइमलाइन साझा करें। इससे काम का दायरा समझने में मदद मिलेगी।</p></section>
+
+      <div class="cta">
+        <h2>क्या आप अपने ब्रांड के लिए वीडियो बनवाना चाहते हैं?</h2>
+        <p>Black Street Studio के क्रिएटिव प्रोडक्शन कार्य को देखें और लखनऊ या भारत के अन्य शहरों में अपने अगले प्रोजेक्ट पर चर्चा करें।</p>
+        <p><a class="btn" href="#contact">प्रोजेक्ट शुरू करें</a> &nbsp; <a href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </article>
+<article class="post" id="p-social" hidden><button class="back pb" type="button">← All articles</button>
 <h1>How to Make Your Brand Stand Out on Social Media</h1>
 <p class="by mono" style="color:var(--mute)">By Black Street Studio | Branding &amp; Social Media Marketing</p>
 <p>In today’s digital world, simply being present on social media isn’t enough. Thousands of brands compete for attention every day, and standing out requires more than just posting regularly. It takes a clear identity, creative content, and a strategy that connects with your audience.</p>
@@ -163,11 +369,11 @@ section h2{line-height:1.05}
 <div class="end"><h3 style="margin-top:0">Ready to make your brand stand out?</h3>
 <p>Let’s turn attention into action.</p>
 <a class="btn" href="#contact" id="blogCta">Book a shoot</a>
-<p style="margin-top:26px"><b>Black Street Studio</b><br><i>Turning Attention Into Action.</i><br>Instagram: <a style="color:var(--amber)" href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">instagram.com/blackstreet.studio</a></p></div></section>
+<p style="margin-top:26px"><b>Black Street Studio</b><br><i>Turning Attention Into Action.</i><br>Instagram: <a style="color:var(--amber)" href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">instagram.com/blackstreet.studio</a></p></div></article></section>
 
 <footer><div class="fg">
 <div><img class="flogo" src="images/logo.png" alt="Black Street Studio"><p class="ft">Turning Attention Into Action.</p></div>
-<div class="fn"><div class="mono">Navigate</div><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Contact</a></div>
+<div class="fn"><div class="mono">Navigate</div><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#blog">Blog</a><a href="#contact">Contact</a><a href="blog/video-production-company-lucknow/" style="text-transform:none;letter-spacing:.04em">Video Production in Lucknow</a></div>
 <div class="fn" id="fSoc"><div class="mono">Follow</div><a href="https://www.instagram.com/blackstreet.studio/" target="_blank" rel="noopener">Instagram</a></div>
 <div class="fn"><div class="mono">Get in touch</div><span id="fMail"></span><span id="fPhone"></span><span id="fAddr"></span><a class="fb" href="#contact">Start a project</a></div>
 </div><div class="mono cp">&copy; Black Street Studio</div></footer>
@@ -402,6 +608,8 @@ renderWork();
 $("#moreBtn").addEventListener("click",()=>{showMore=!showMore;renderWork();});
 
 const stars=n=>{n=Math.max(1,Math.min(5,Math.round(+n)||5));return "\u2605".repeat(n)+"\u2606".repeat(5-n);};
+let imgs={};
+function applyImgs(i){[["about","About"],["contact","Contact"]].forEach(([k,n])=>{const el=$("#img"+n);if(!el)return;const u=i&&i[k];el.style.backgroundImage=u?`url("${String(u).replace(/"/g,"%22")}")`:"";});}
 function renderRev(){const a=CFG.REVIEWS;{const cards=a.map(r=>`<div class="rcard"><div class="st">${stars(r.rating)}</div><p>${esc(r.text)}</p><div class="mono">${esc(r.name)}</div></div>`).join("");
   if(!a.length)$("#rvGrid").innerHTML="";
   else{const rep=Math.max(1,Math.ceil(1600/(a.length*358))),half=cards.repeat(rep),dur=Math.max(25,Math.round(a.length*rep*358/55));
@@ -417,6 +625,7 @@ fetch("data.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(!d)retu
   if(Array.isArray(d.portfolio)){items=d.portfolio;showMore=false;renderWork();}
   if(Array.isArray(d.reviews)){CFG.REVIEWS=d.reviews;renderRev();}
   if(d.contact){Object.assign(CFG.CONTACT,d.contact);fillContact();}
+  if(d.images)applyImgs(d.images);
 }).catch(()=>{});
 async function send(payload){
   if(!CFG.FORM_ENDPOINT)throw 0;
@@ -444,7 +653,7 @@ if(!RM){
 }
 const bar=$("#bar");
 addEventListener("scroll",()=>{const h=document.documentElement,m=h.scrollHeight-innerHeight;bar.style.width=(m>0?scrollY/m*100:0)+"%";},{passive:true});
-function setView(b){document.body.classList.toggle("blog",b);scrollTo(0,0);}
+function setView(b){document.body.classList.toggle("blog",b);scrollTo(0,0);if(b)showPost(null);}
 document.querySelectorAll("nav a,footer .fn a[href^=\"#\"]").forEach(a=>a.addEventListener("click",e=>{
   const h=a.getAttribute("href"),b=h==="#blog";
   if(b||document.body.classList.contains("blog")){e.preventDefault();setView(b);if(!b)setTimeout(()=>{const t=document.querySelector(h);t&&t.scrollIntoView();},30);}
@@ -453,4 +662,14 @@ $("nav b").addEventListener("click",()=>setView(false));
 $("#blogBack").addEventListener("click",()=>setView(false));
 $("#blogCta").addEventListener("click",e=>{e.preventDefault();setView(false);setTimeout(()=>$("#contact").scrollIntoView(),30);});
 if(location.hash==="#blog")setView(true);
+document.querySelectorAll(".sideimg").forEach(el=>{
+  if(RM)return;el.classList.add("sx");
+  new IntersectionObserver(es=>es.forEach(e=>el.classList.toggle("sx",!e.isIntersecting)),{threshold:.3}).observe(el);
+});
+function showPost(id){document.querySelectorAll("#blogS .post").forEach(p=>p.hidden=p.id!==id);$("#blogList").hidden=!!id;scrollTo(0,0);}
+$("#blogS").addEventListener("click",e=>{
+  const c=e.target.closest("[data-post]");if(c){e.preventDefault();showPost(c.dataset.post);return;}
+  if(e.target.closest(".pb")){showPost(null);return;}
+  const g=e.target.closest('a[href="#contact"]');if(g&&g.id!=="blogCta"){e.preventDefault();setView(false);setTimeout(()=>$("#contact").scrollIntoView(),30);}
+});
 </script></body></html>
