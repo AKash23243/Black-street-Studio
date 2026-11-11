@@ -43,6 +43,17 @@ button.g{background:none;color:var(--cream);border:1px solid var(--mute)}button.
 
   <h2>Section images</h2><div class="card" id="il"></div>
 
+  <h2>Enquiries &amp; new reviews</h2>
+  <div class="card"><small>Google Apps Script link (the web app URL ending in /exec)</small><input id="eu" placeholder="https://script.google.com/macros/s/.../exec">
+  <small>Secret key (the SECRET word in your script; kept only in this browser)</small><input id="ek" type="password">
+  <button id="esave">Save and load</button> <span id="emsg" class="mono"></span></div>
+  <div id="eq"></div>
+
+  <h2>Behind the scenes (BTS)</h2>
+  <div class="card"><div class="row"><input id="bt" placeholder="Caption (optional)"><input id="bv" placeholder="Video link (optional)"></div>
+  <small>Photo</small><input id="bf" type="file" accept="image/*"><button id="badd">Add to BTS</button></div>
+  <div id="bl"></div>
+
   <h2>Reviews</h2><div id="rl"></div>
   <div class="card"><div class="row"><input id="rn" placeholder="Reviewer name"><select id="rs"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>
   <textarea id="rt" rows="2" placeholder="Review text"></textarea><button id="radd">Add review</button></div>
@@ -54,7 +65,7 @@ button.g{background:none;color:var(--cream);border:1px solid var(--mute)}button.
 
 <script>
 const CATS=["Music Videos","Commercials & Ad Shoots","Influencer & Content Shoots","Short Films","Video Editing","Social Media Management"];
-const CK=["phone","email","address","behance","vimeo","x","youtube","facebook"];
+const CK=["whatsapp","phone","email","address","behance","vimeo","x","youtube","facebook"];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const LS="bss_admin_v1";
@@ -83,9 +94,9 @@ async function connect(){
     if(r.status===404){const t=await gh("?ref="+encodeURIComponent(cfg.branch));if(!t.ok)throw new Error("Repository or branch not found. Check the username, repository name and branch.");data={contact:{},portfolio:[],reviews:[]};sha=null;}
     else if(!r.ok)throw new Error("GitHub replied with an error ("+r.status+").");
     else{const j=await r.json();sha=j.sha;data=JSON.parse(unb64(j.content));}
-    data.images=data.images||{about:"",contact:""};data.contact=data.contact||{};data.portfolio=data.portfolio||[];data.reviews=data.reviews||[];
+    data.images=data.images||{about:"",contact:""};data.bts=data.bts||[];data.contact=data.contact||{};data.portfolio=data.portfolio||[];data.reviews=data.reviews||[];
     localStorage.setItem(LS,JSON.stringify(cfg));
-    $("#login").hidden=true;$("#app").hidden=false;$("#bar").hidden=false;render();dirty(false);
+    $("#login").hidden=true;$("#app").hidden=false;$("#bar").hidden=false;render();dirty(false);if(data.formEndpoint&&!ecfg.url){ecfg.url=data.formEndpoint;$("#eu").value=ecfg.url;}if(ecfg.url&&ecfg.key)loadEnq();
   }catch(e){m.textContent=e.message;}
 }
 $("#connect").onclick=connect;
@@ -99,6 +110,7 @@ function render(){
     <input data-i="${i}" data-k="video" value="${esc(p.video||"")}" placeholder="Video link (optional)">
     <small>Change thumbnail</small><input type="file" accept="image/*" data-f="${i}">
     <div class="row"><button class="g" data-up="${i}">Move up</button><button class="g" data-dn="${i}">Move down</button><button class="d" data-del="${i}">Delete</button></div></div></div>`).join("")||'<p class="mono">No items yet.</p>';
+  $("#bl").innerHTML=data.bts.map((p,i)=>`<div class="card it">${p.url?`<img src="${esc(pending[p.url]?pending[p.url].preview:p.url)}" alt="">`:'<div class="ph"></div>'}<div><input data-bi="${i}" data-bk="title" value="${esc(p.title||"")}" placeholder="Caption"><input data-bi="${i}" data-bk="video" value="${esc(p.video||"")}" placeholder="Video link (optional)"><div class="row"><button class="g" data-bup="${i}">Move up</button><button class="g" data-bdn="${i}">Move down</button><button class="d" data-bdel="${i}">Delete</button></div></div></div>`).join("")||'<p class="mono">No BTS items yet.</p>';
   $("#il").innerHTML=[["about","About section image"],["contact","Start a project image"]].map(([k,l])=>{const u=data.images[k];return `<div style="margin-bottom:14px"><b>${l}</b><br>${u?`<img src="${esc(pending[u]?pending[u].preview:u)}" style="width:200px;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);display:block;margin:6px 0">`:'<small>Using the default studio photo</small><br>'}<input type="file" accept="image/*" data-im="${k}"> ${u?`<button class="d" data-imr="${k}">Use default</button>`:""}</div>`;}).join("");
   $("#rl").innerHTML=data.reviews.map((r,i)=>`<div class="card"><b>${esc(r.name)}</b> <span class="mono">${"\u2605".repeat(Math.max(1,Math.min(5,+r.rating||5)))}</span><p>${esc(r.text)}</p><button class="d" data-rdel="${i}">Delete</button></div>`).join("")||'<p class="mono">No reviews yet.</p>';
   $("#cl").innerHTML=CK.map(k=>`<small>${k[0].toUpperCase()+k.slice(1)}${["behance","vimeo","x","youtube","facebook"].includes(k)?" (full https:// link)":""}</small><input data-c="${k}" value="${esc(data.contact[k]||"")}">`).join("");
@@ -130,6 +142,39 @@ $("#pl").addEventListener("click",e=>{const d=e.target.dataset,a=data.portfolio;
   if(d.up!==undefined)mv(+d.up,-1);if(d.dn!==undefined)mv(+d.dn,1);});
 $("#il").addEventListener("change",async e=>{const k=e.target.dataset.im;if(!k||!e.target.files[0])return;try{data.images[k]=await addImage(e.target.files[0],"section-"+k);render();dirty();}catch(err){flash(err.message);}});
 $("#il").addEventListener("click",e=>{const k=e.target.dataset.imr;if(k){data.images[k]="";render();dirty();}});
+const EK="bss_enq_v1";let ecfg={};try{ecfg=JSON.parse(localStorage.getItem(EK)||"{}");}catch(_){}
+let enq=[];
+const waNum=p=>{let d=String(p||"").replace(/\D/g,"");if(d.length===10)d="91"+d;else if(d.length===11&&d[0]==="0")d="91"+d.slice(1);return d;};
+function renderEnq(){
+  const when=t=>{try{return new Date(t).toLocaleString();}catch(_){return"";}};
+  const enqs=enq.filter(r=>r.kind!=="review"),revs=enq.filter(r=>r.kind==="review");
+  const card=r=>{const c=String(r.contact||""),phone=/^[+\d][\d\s-]{8,}$/.test(c.trim()),mail=/@/.test(c);
+    return `<div class="card"><small>${esc(when(r.time))}</small><br><b>${esc(r.name)}</b> &middot; ${phone?`<a style="color:var(--amber)" href="tel:${esc(c.replace(/[^+\d]/g,""))}">${esc(c)}</a>`:mail?`<a style="color:var(--amber)" href="mailto:${esc(c)}">${esc(c)}</a>`:esc(c)}
+    <p>${esc(r.service||"")}${r.date?" &middot; "+esc(String(r.date).slice(0,10)):""}<br>${esc(r.details||"")}</p>
+    ${phone?`<a class="mono" style="color:#25D366" target="_blank" rel="noopener" href="https://wa.me/${waNum(c)}">Reply on WhatsApp</a>`:""}</div>`;};
+  const rcard=(r,i)=>`<div class="card"><small>${esc(when(r.time))}</small><br><b>${esc(r.name)}</b> <span class="mono">${"\u2605".repeat(Math.max(1,Math.min(5,+r.rating||5)))}</span><p>${esc(r.details||"")}</p><button data-radd="${i}">Add to site reviews</button></div>`;
+  $("#eq").innerHTML='<h3>Start a project enquiries ('+enqs.length+')</h3>'+(enqs.map(card).join("")||'<p class="mono">No enquiries yet.</p>')+'<h3>Submitted reviews ('+revs.length+')</h3>'+(revs.map((r,i)=>rcard(r,enq.indexOf(r))).join("")||'<p class="mono">No submitted reviews.</p>');
+}
+async function loadEnq(){
+  const m=$("#emsg");if(!ecfg.url||!ecfg.key){m.textContent="Enter the link and the secret key.";return;}
+  m.textContent="Loading...";
+  try{const r=await fetch(ecfg.url+(ecfg.url.includes("?")?"&":"?")+"key="+encodeURIComponent(ecfg.key));const j=await r.json();
+    if(!j.ok)throw new Error(j.error||"Access denied");enq=j.rows||[];renderEnq();m.textContent="Loaded "+enq.length+" messages.";}
+  catch(e){m.textContent="Could not load: "+(e.message||"check the link and the key");}
+}
+$("#esave").onclick=()=>{ecfg={url:$("#eu").value.trim(),key:$("#ek").value.trim()};localStorage.setItem(EK,JSON.stringify(ecfg));
+  if(ecfg.url&&data.formEndpoint!==ecfg.url){data.formEndpoint=ecfg.url;dirty();}loadEnq();};
+$("#eq").addEventListener("click",e=>{const i=e.target.dataset.radd;if(i===undefined)return;const r=enq[+i];
+  data.reviews.unshift({name:r.name,rating:+r.rating||5,text:r.details||""});e.target.textContent="Added. Now click Save changes to site.";e.target.disabled=true;render();dirty();});
+if(ecfg.url){$("#eu").value=ecfg.url;$("#ek").value=ecfg.key||"";}
+$("#badd").onclick=async()=>{const f=$("#bf").files[0];if(!f){flash("Choose a photo first.");return;}
+  try{const it={title:$("#bt").value.trim(),url:await addImage(f,$("#bt").value||"bts")};const v=$("#bv").value.trim();if(v)it.video=v;
+    data.bts.unshift(it);$("#bt").value="";$("#bv").value="";$("#bf").value="";render();dirty();}catch(err){flash(err.message);}};
+$("#bl").addEventListener("input",e=>{const d=e.target.dataset;if(d.bk!==undefined){const p=data.bts[+d.bi];if(d.bk==="video"&&!e.target.value.trim())delete p.video;else p[d.bk]=e.target.value;dirty();}});
+$("#bl").addEventListener("click",e=>{const d=e.target.dataset,a=data.bts;
+  if(d.bdel!==undefined&&confirm("Delete this BTS item?")){a.splice(+d.bdel,1);render();dirty();}
+  const mv=(i,n)=>{if(i+n<0||i+n>=a.length)return;[a[i],a[i+n]]=[a[i+n],a[i]];render();dirty();};
+  if(d.bup!==undefined)mv(+d.bup,-1);if(d.bdn!==undefined)mv(+d.bdn,1);});
 $("#radd").onclick=()=>{const n=$("#rn").value.trim(),t=$("#rt").value.trim();if(!n||!t){flash("Enter the name and the review.");return;}
   data.reviews.unshift({name:n,rating:+$("#rs").value,text:t});$("#rn").value="";$("#rt").value="";render();dirty();};
 $("#rl").addEventListener("click",e=>{const i=e.target.dataset.rdel;if(i!==undefined&&confirm("Delete this review?")){data.reviews.splice(+i,1);render();dirty();}});
@@ -139,7 +184,7 @@ $("#save").onclick=async()=>{
   const btn=$("#save");btn.disabled=true;
   try{
     for(const[path,img]of Object.entries(pending)){
-      if(!data.portfolio.some(p=>p.url===path)&&!Object.values(data.images||{}).includes(path))continue;
+      if(!data.portfolio.some(p=>p.url===path)&&!Object.values(data.images||{}).includes(path)&&!data.bts.some(p=>p.url===path))continue;
       flash("Uploading "+path+"...");
       const r=await gh(path,{method:"PUT",body:JSON.stringify({message:"Add image "+path,content:img.b64,branch:cfg.branch})});
       if(!r.ok)throw new Error("Image upload failed ("+r.status+").");

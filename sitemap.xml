@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://sitemaps.org" xmlns:xhtml="http://w3.org">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://blackstreetstudio.in/</loc></url>
   <url>
-    <loc>https://blackstreetstudio.in</loc>
+    <loc>https://blackstreetstudio.in/blog/video-production-company-lucknow/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://blackstreetstudio.in/blog/video-production-company-lucknow/"/>
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://blackstreetstudio.in/hi/blog/video-production-company-lucknow/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blackstreetstudio.in/blog/video-production-company-lucknow/"/>
   </url>
   <url>
-    <loc>https://blackstreetstudio.inblog/video-production-company-lucknow/</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://blackstreetstudio.inblog/video-production-company-lucknow/"/>
-    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://blackstreetstudio.inhi/blog/video-production-company-lucknow/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://blackstreetstudio.inblog/video-production-company-lucknow/"/>
-  </url>
-  <url>
-    <loc>https://blackstreetstudio.inhi/blog/video-production-company-lucknow/</loc>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://blackstreetstudio.inblog/video-production-company-lucknow/"/>
-    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://blackstreetstudio.inhi/blog/video-production-company-lucknow/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://blackstreetstudio.inblog/video-production-company-lucknow/"/>
+    <loc>https://blackstreetstudio.in/hi/blog/video-production-company-lucknow/</loc>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://blackstreetstudio.in/blog/video-production-company-lucknow/"/>
+    <xhtml:link rel="alternate" hreflang="hi-IN" href="https://blackstreetstudio.in/hi/blog/video-production-company-lucknow/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blackstreetstudio.in/blog/video-production-company-lucknow/"/>
   </url>
 </urlset>

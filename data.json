@@ -7,7 +7,8 @@
   "vimeo": "",
   "x": "",
   "youtube": "",
-  "facebook": ""
+  "facebook": "",
+  "whatsapp": ""
  },
  "portfolio": [
   {
@@ -207,5 +208,7 @@
  "images": {
   "about": "images/section-about.jpg",
   "contact": "images/section-contact.jpg"
- }
+ },
+ "bts": [],
+ "formEndpoint": ""
 }
